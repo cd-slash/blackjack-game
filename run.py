@@ -9,3 +9,10 @@ class Game:
         self.chip_stack = 1000
 
 
+class Deck:
+    """
+    Standard 52 card deck (indexed 0 to 51)
+    """
+
+    def __init__(self):
+        self.cards = range(51)
