@@ -1,3 +1,11 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
+class Game:
+    """
+    Primary class for all Blackjack logic.
+    Holds the player's chip stack and card deck(s).
+    Maintains game state and has methods for displaying game status to the user.
+    """
+
+    def __init__(self):
+        self.chip_stack = 1000
+
+
