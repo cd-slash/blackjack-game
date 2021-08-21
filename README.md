@@ -1,6 +1,7 @@
 # Blackjack CLI Game
 
-Description
+User's goal:
+  - _The application user wants to play a single-player card game through the command line_
 
 ## How to play
 
