@@ -1,4 +1,4 @@
-class Game:
+class Table:
     """
     Primary class for all Blackjack logic.
     Holds the player's chip stack and card deck(s).
@@ -6,7 +6,7 @@ class Game:
     """
 
     def __init__(self):
-        self.chip_stack = 1000
+        self.player_stack = 1000
 
 
 class Deck:
