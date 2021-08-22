@@ -72,8 +72,7 @@ class Table:
             # end the hand if player is bust
             if evaluate_hand(self.player_cards)['value'] > 21:
                 self.player_input_ended = True
-        
-        
+
 
     def process_action(self, key):
         # h = hit, s = stick, d = double, 2 = split
