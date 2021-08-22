@@ -1,7 +1,12 @@
+import random
+import math
+
+
 class Table:
     """
     Holds the player's chip stack and card deck(s).
-    Maintains game state and has methods for displaying game status to the user.
+    Maintains game state and has methods for displaying game status
+    to the user.
     """
 
     def __init__(self):
