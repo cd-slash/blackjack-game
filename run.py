@@ -1,7 +1,6 @@
 import random
 import math
 
-
 class Table:
     """
     Holds the player's chip stack and card deck(s).
@@ -15,8 +14,8 @@ class Table:
         self.reshuffle = False
 
     def print(self):
-        print(f"Dealer cards: {self.dealer_cards}")
-        print(f"Your cards: {self.player_cards}")
+        print(f"Dealer cards: {[Deck.get_label(card) for card in self.dealer_cards]}")
+        print(f"Your cards: {[Deck.get_label(card) for card in self.player_cards]}")
         print(f"Current bet: {self.bet}")
         print(f"Chip stack: {self.player_stack}")
 
@@ -141,12 +140,19 @@ class Deck:
 
     # card values are in 0-12 indexed array
     # 4 suits of 13 cards, so label index is remainder after dividing by 13
-    def get_rank(self, x):
-        return self.card_ranks[x % 13]
+    @staticmethod
+    def get_rank(x):
+        return Deck.card_ranks[x % 13]
 
     # 52 cards in 4 suits, so round down after dividing by 13 for suit
-    def get_suit(self, x):
-        return self.card_suits[math.floor(x / 13)]
+    @staticmethod
+    def get_suit(x):
+        return Deck.card_suits[math.floor(x / 13)]
+
+    # combined rank and suit, e.g. As or 4d
+    @staticmethod
+    def get_label(x):
+        return f"{Deck.get_rank(x)}{Deck.get_suit(x)}"
 
 
 class Shoe:
