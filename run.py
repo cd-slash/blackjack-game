@@ -121,7 +121,7 @@ class Shoe:
     def num_decks(self, v):
         if not (v > 0 and v < 7):
             raise Exception("Number of decks must be between 1 and 6")
-        
+
 
 def evaluate_hand(cards):
     """
