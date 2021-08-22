@@ -42,7 +42,7 @@ class Deck:
         ]
 
     card_suits = [
-        'C', 'D', 'H', 'S'
+        'c', 'd', 'h', 's'
         ]
 
     def __init__(self):
