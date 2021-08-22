@@ -133,7 +133,7 @@ class Deck:
         ]
 
     def __init__(self):
-        self.cards = range(52)
+        self.cards = list(range(52))
         random.shuffle(self.cards)
 
     # card values are in 0-12 indexed array
