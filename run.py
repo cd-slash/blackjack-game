@@ -9,8 +9,17 @@ class Table:
     to the user.
     """
 
-    def __init__(self):
-        self.player_stack = 1000
+    def __init__(self, player_stack):
+        self.player_stack = player_stack
+
+    @property
+    def player_stack(self):
+        return self.player_stack
+
+    @player_stack.setter
+    def player_stack(self, v):
+        if not (v > 0):
+            raise Exception("Player stack must be greater than 0")
 
 
 class Deck:
