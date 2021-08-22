@@ -52,7 +52,7 @@ class Table:
 
     def reveal_dealer_cards(self):
         # deal 1 additional dealer card, since dealer already has one
-        self.dealer_cards += self.shoe.cards.pop()
+        self.dealer_cards += [self.shoe.cards.pop()]
         # check for blackjack
         if evaluate_hand(self.dealer_cards)['blackjack']:
             return
