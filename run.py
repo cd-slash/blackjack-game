@@ -62,7 +62,7 @@ class Table:
         # continue drawing cards until dealer has > 17
         while evaluate_hand(self.dealer_cards)['value'] < 17:
             self.dealer_cards += self.shoe.cards.pop()
-    
+
     def process_action(self, key):
         # h = hit, s = stick, d = double, 2 = split
         if key == 'h':
@@ -73,7 +73,7 @@ class Table:
             self.bet += self.bet
             self.player_cards += self.shoe.cards.pop()
             self.player_input_ended = True
-    
+
     def play_hand(self, bet):
         self.player_input_ended = False
         # set the bet first to ensure valid before subtracting from stack
