@@ -1,6 +1,5 @@
 import random
 import math
-import keyboard
 
 
 class Table:
@@ -59,7 +58,7 @@ class Table:
             return
         # continue drawing cards until dealer has > 17
         while evaluate_hand(self.dealer_cards)['value'] < 17:
-            self.dealer_cards += self.shoe.cards.pop()
+            self.dealer_cards += [self.shoe.cards.pop()]
 
     def process_action(self, key):
         # h = hit, s = stick, d = double, 2 = split
@@ -75,21 +74,22 @@ class Table:
     def play_hand(self):
         self.player_input_ended = False
         # set the bet first to ensure valid before subtracting from stack
-        self.bet = input('How much would you like to bet on this hand?')
+        self.bet = int(input('How much would you like to bet on this hand?'))
         self.player_stack -= self.bet
         # deal 2 cards to player and 1 to dealer
         self.dealer_cards = []
         self.player_cards = []
-        self.player_cards += self.shoe.cards.pop(2)
-        self.dealer_cards += self.shoe.cards.pop()
+        print(self.shoe.cards)
+        self.player_cards += [self.shoe.cards.pop(2)]
+        self.dealer_cards += [self.shoe.cards.pop()]
         # get player action
         while not self.player_input_ended:
             self.print()
-            key_pressed = keyboard.read_key()
-            if key_pressed in ['h', 's', 'd', '2']:
-                self.process_action(input(key_pressed))
+            action = input('Hit (h), Stick (s), Double (d) or Split (2)?')
+            if action in ['h', 's', 'd', '2']:
+                self.process_action(action)
             else:
-                print("invalid key!")
+                print("invalid action! Please press h, s, d or 2...")
             # end the hand if player is bust
             if evaluate_hand(self.player_cards)['value'] > 21:
                 self.player_input_ended = True
