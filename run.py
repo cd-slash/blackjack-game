@@ -63,12 +63,12 @@ class Table:
     def process_action(self, key):
         # h = hit, s = stick, d = double, 2 = split
         if key == 'h':
-            self.player_cards += self.shoe.cards.pop()
+            self.player_cards += [self.shoe.cards.pop()]
         if key == 's':
             self.player_input_ended = True
         if key == 'd':
             self.bet += self.bet
-            self.player_cards += self.shoe.cards.pop()
+            self.player_cards += [self.shoe.cards.pop()]
             self.player_input_ended = True
 
     def play_hand(self):
