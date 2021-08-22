@@ -13,9 +13,11 @@ class Table:
         self.shoe = Shoe(num_decks)
         self.reshuffle = False
 
-    def print(self):
+    def print_cards(self):
         print(f"Dealer cards: {[Deck.get_label(card) for card in self.dealer_cards]}")
         print(f"Your cards: {[Deck.get_label(card) for card in self.player_cards]}")
+
+    def print_bet(self):
         print(f"Current bet: {self.bet}")
         print(f"Chip stack: {self.player_stack}")
 
@@ -82,7 +84,8 @@ class Table:
         self.dealer_cards += [self.shoe.cards.pop()]
         # get player action
         while not self.player_input_ended:
-            self.print()
+            self.print_bet()
+            self.print_cards()
             action = input('Hit (h), Stick (s), Double (d) or Split (2)?')
             if action in ['h', 's', 'd', '2']:
                 self.process_action(action)
