@@ -1,5 +1,6 @@
 import random
 import math
+import keyboard
 
 
 class Table:
@@ -51,6 +52,40 @@ class Table:
                 (player_hand_value == dealer_hand_value)) or (
                     player_blackjack and dealer_blackjack):
                 self.player_stack += self.bet
+
+    def play_hand(self, bet):
+        self.player_input_ended = False
+        # set the bet first to ensure valid before subtracting from stack
+        self.bet = bet
+        self.player_stack -= self.bet
+        # deal 2 cards to player and 1 to dealer
+        self.player_cards += self.shoe.cards.pop(2)
+        self.dealer_cards += self.shoe.cards.pop()
+        # get player action
+        while not self.player_input_ended:
+            self.print()
+            key_pressed = keyboard.read_key()
+            if key_pressed in ['h', 's', 'd', '2']:
+                self.process_action(input(key_pressed))
+            else:
+                print("invalid key!")
+            # end the hand if player is bust
+            if evaluate_hand(self.player_cards)['value'] > 21:
+                self.player_input_ended = True
+        
+        
+
+    def process_action(self, key):
+        # h = hit, s = stick, d = double, 2 = split
+        if key == 'h':
+            self.player_cards += self.shoe.cards.pop()
+        if key == 's':
+            self.player_input_ended = True
+        if key == 'd':
+            self.bet += self.bet
+            self.player_cards += self.shoe.cards.pop()
+            self.player_input_ended = True
+
 
     @property
     def player_stack(self):
