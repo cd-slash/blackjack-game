@@ -13,6 +13,7 @@ class Table:
     def __init__(self, player_stack, num_decks):
         self.player_stack = player_stack
         self.shoe = Shoe(num_decks)
+        self.reshuffle = False
 
     def print(self):
         f"Dealer cards: {self.dealer_cards}"
@@ -94,6 +95,8 @@ class Table:
                 self.player_input_ended = True
         self.reveal_dealer_cards()
         self.process_result()
+        if self.shoe.cards.length() < self.shoe.reshuffle_point:
+            self.reshuffle = True
 
     @property
     def player_stack(self):
@@ -155,6 +158,7 @@ class Shoe:
         for _ in range(self.num_decks):
             new_deck = Deck()
             self.cards += new_deck.cards
+        self.reshuffle_point = random.randint(30, 52 * num_decks)
 
     @property
     def num_decks(self):
@@ -197,7 +201,7 @@ def evaluate_hand(cards):
         return {'value': hand_value, 'blackjack': False}
 
 
-# Create a new table and play until player has no chips
+# Create a new table and play until player has no chips or shoe hits reshuffle marker
 table = Table(1000, 6)
-while table.player_stack > 0:
+while table.player_stack > 0 and not table.reshuffle:
     table.play_hand()
