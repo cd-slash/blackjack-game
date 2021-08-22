@@ -94,7 +94,7 @@ class Table:
                 self.player_input_ended = True
         self.reveal_dealer_cards()
         self.process_result()
-        if self.shoe.cards.length() < self.shoe.reshuffle_point:
+        if len(self.shoe.cards) < self.shoe.reshuffle_point:
             self.reshuffle = True
 
     @property
@@ -200,7 +200,7 @@ def evaluate_hand(cards):
             hand_value -= 10
 
     # test for blackjack
-    if cards.length == 2 and hand_value == 21:
+    if len(cards) == 2 and hand_value == 21:
         return {'value': 21, 'blackjack': True}
     else:
         return {'value': hand_value, 'blackjack': False}
