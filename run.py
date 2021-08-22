@@ -9,8 +9,18 @@ class Table:
     to the user.
     """
 
-    def __init__(self, player_stack):
+    def __init__(self, player_stack, num_decks):
         self.player_stack = player_stack
+        self.dealer_cards = []
+        self.player_cards = []
+        self.bet = 0
+        self.shoe = Shoe(num_decks)
+
+    def print(self):
+        f"Dealer cards: {self.dealer_cards}"
+        f"Your cards: {self.player_cards}"
+        f"Current bet: {self.bet}"
+        f"Chip stack: {self.player_stack}"
 
     @property
     def player_stack(self):
