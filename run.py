@@ -100,23 +100,27 @@ class Table:
 
     @property
     def player_stack(self):
-        return self.player_stack
+        return self._player_stack
 
     @player_stack.setter
     def player_stack(self, v):
         if not (v > 0):
             raise Exception("Player stack must be greater than 0")
+        else:
+            self._player_stack = v
 
     @property
     def bet(self):
-        return self.bet
+        return self._bet
 
     @bet.setter
     def bet(self, v):
         if not (v > 0):
             raise Exception("Bet must be greater than 0")
-        if not (v <= self.player_stack):
+        elif not (v <= self.player_stack):
             raise Exception("Bet must not be larger than remaining chips")
+        else:
+            self._bet = v
 
 
 class Deck:
@@ -152,7 +156,7 @@ class Shoe:
     reshuffle (i.e. a new shoe) is needed
     """
 
-    def __init__(self, num_decks):
+    def __init__(self, num_decks=6):
         self.num_decks = num_decks
         self.cards = []
         for _ in range(self.num_decks):
@@ -162,12 +166,14 @@ class Shoe:
 
     @property
     def num_decks(self):
-        return self.num_decks
+        return self._num_decks
 
     @num_decks.setter
     def num_decks(self, v):
         if not (v > 0 and v < 7):
             raise Exception("Number of decks must be between 1 and 6")
+        else:
+            self._num_decks = v
 
 
 def evaluate_hand(cards):
