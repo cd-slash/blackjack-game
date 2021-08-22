@@ -22,6 +22,36 @@ class Table:
         f"Current bet: {self.bet}"
         f"Chip stack: {self.player_stack}"
 
+    def process_result(self):
+        """
+        Once all actions have been taken, determine if the player
+        won or lost the hand and update their stack accordingly
+        """
+        player_hand_evaluation = evaluate_hand(self.player_cards)['value']
+        dealer_hand_evaluation = evaluate_hand(self.dealer_cards)['value']
+        player_hand_value = player_hand_evaluation['value']
+        dealer_hand_value = dealer_hand_evaluation['value']
+        player_blackjack = player_hand_evaluation['blackjack']
+        dealer_blackjack = dealer_hand_evaluation['blackjack']
+
+        # player has blackjack, dealer does not: winnings are 1.5x bet
+        # note: bet is also returned when player wins so bet is * 2.5 not 1.5
+        if player_blackjack and not dealer_blackjack:
+            self.player_stack += self.bet * 2.5
+            return
+
+        # player is not bust
+        if player_hand_value <= 21:
+            # player hand beats dealer or dealer is bust
+            if player_hand_value > dealer_hand_value or dealer_hand_value > 21:
+                self.player_stack += self.bet * 2
+                return
+            # tie: return the bet only
+            if (not dealer_blackjack and
+                (player_hand_value == dealer_hand_value)) or (
+                    player_blackjack and dealer_blackjack):
+                self.player_stack += self.bet
+
     @property
     def player_stack(self):
         return self.player_stack
