@@ -100,6 +100,29 @@ class Deck:
         return self.card_suits[math.floor(x / 13)]
 
 
+class Shoe:
+    """
+    Contains one or more decks of cards and a cut point that defines when a
+    reshuffle (i.e. a new shoe) is needed
+    """
+
+    def __init__(self, num_decks):
+        self.num_decks = num_decks
+        self.cards = []
+        for _ in range(self.num_decks):
+            new_deck = Deck()
+            self.cards += new_deck.cards
+
+    @property
+    def num_decks(self):
+        return self.num_decks
+
+    @num_decks.setter
+    def num_decks(self, v):
+        if not (v > 0 and v < 7):
+            raise Exception("Number of decks must be between 1 and 6")
+        
+
 def evaluate_hand(cards):
     """
     Evaluate the value of a full hand by passing in an array of cards
