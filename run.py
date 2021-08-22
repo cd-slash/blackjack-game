@@ -58,6 +58,34 @@ class Deck:
     def get_suit(self, x):
         return self.card_suits[math.floor(x / 13)]
 
+    # pass array of all cards to get the combined value
+    def get_hand_value(self, cards):
+        hand_value = 0
+        ace_count = 0
+
+        for card in cards:
+            # Number cards
+            if (card % 13) <= 7:
+                hand_value += (card % 13 + 2)
+            # Ten and face cards
+            elif (card % 13) >= 8 and (card % 13) <= 11:
+                hand_value += 10
+            # Ace
+            elif (card % 13) == 12:
+                ace_count += 1
+                hand_value += 11
+
+        # allow for aces to be 1 or 11
+        for _ in range(ace_count):
+            if hand_value > 21:
+                hand_value -= 10
+
+        # test for blackjack
+        if cards.length == 2 and hand_value == 21:
+            return [21, True]
+        else:
+            return [hand_value, False]
+
 
 class Shoe:
     """
