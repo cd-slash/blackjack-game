@@ -79,7 +79,7 @@ class Table:
         # deal 2 cards to player and 1 to dealer
         self.dealer_cards = []
         self.player_cards = []
-        self.player_cards += [self.shoe.cards.pop(2)]
+        self.player_cards += [self.shoe.cards.pop(), self.shoe.cards.pop()]
         self.dealer_cards += [self.shoe.cards.pop()]
         # get player action
         while not self.player_input_ended:
