@@ -97,6 +97,7 @@ class Table:
         self.dealer_cards += [self.shoe.cards.pop()]
         # get player action
         while not self.player_input_ended:
+            os.system('clear')
             self.print_bet()
             self.print_cards()
             action_request_string = 'Hit (h), Stick (s), Double (d) or Split (2)?'
@@ -118,6 +119,7 @@ class Table:
         # only deal additional dealer cards if player is not bust
         if not self.player_bust:
             self.reveal_dealer_cards()
+        os.system('clear')
         print("All cards dealt - hand complete")
         self.print_cards()
         self.process_result()
