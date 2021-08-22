@@ -195,3 +195,8 @@ def evaluate_hand(cards):
         return {'value': 21, 'blackjack': True}
     else:
         return {'value': hand_value, 'blackjack': False}
+
+# Create a new table and play until player has no chips
+table = Table(1000, 6)
+while table.player_stack > 0:
+    table.play_hand()
