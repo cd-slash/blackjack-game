@@ -97,7 +97,14 @@ class Table:
         while not self.player_input_ended:
             self.print_bet()
             self.print_cards()
-            action = input('Hit (h), Stick (s), Double (d) or Split (2)?')
+            action_request_string = 'Hit (h), Stick (s), Double (d) or Split (2)?'
+            # Loop will run until valid input is entered to trigger break
+            while True:
+                try:
+                    action = input(action_request_string)
+                    break
+                except ValueError:
+                    print("invalid action - please try again...")
             if action in ['h', 's', 'd', '2']:
                 self.process_action(action)
             else:
@@ -122,7 +129,7 @@ class Table:
     @player_stack.setter
     def player_stack(self, v):
         if not (v > 0):
-            raise Exception("Player stack must be greater than 0")
+            raise ValueError("Player stack must be greater than 0")
         else:
             self._player_stack = v
 
@@ -133,9 +140,9 @@ class Table:
     @bet.setter
     def bet(self, v):
         if not (v > 0):
-            raise Exception("Bet must be greater than 0")
+            raise ValueError("Bet must be greater than 0")
         elif not (v <= self.player_stack):
-            raise Exception("Bet must not be larger than remaining chips")
+            raise ValueError("Bet must not be larger than remaining chips")
         else:
             self._bet = v
 
@@ -195,7 +202,7 @@ class Shoe:
     @num_decks.setter
     def num_decks(self, v):
         if not (v > 0 and v < 7):
-            raise Exception("Number of decks must be between 1 and 6")
+            raise ValueError("Number of decks must be between 1 and 6")
         else:
             self._num_decks = v
 
