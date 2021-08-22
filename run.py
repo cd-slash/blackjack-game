@@ -71,10 +71,10 @@ class Table:
             self.player_cards += self.shoe.cards.pop()
             self.player_input_ended = True
 
-    def play_hand(self, bet):
+    def play_hand(self):
         self.player_input_ended = False
         # set the bet first to ensure valid before subtracting from stack
-        self.bet = bet
+        self.bet = input('How much would you like to bet on this hand?')
         self.player_stack -= self.bet
         # deal 2 cards to player and 1 to dealer
         self.dealer_cards = []
@@ -195,6 +195,7 @@ def evaluate_hand(cards):
         return {'value': 21, 'blackjack': True}
     else:
         return {'value': hand_value, 'blackjack': False}
+
 
 # Create a new table and play until player has no chips
 table = Table(1000, 6)
