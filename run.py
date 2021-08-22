@@ -56,7 +56,17 @@ class Shoe:
     """
 
     def __init__(self, num_decks):
+        self.num_decks = num_decks
         self.cards = []
-        for _ in range(num_decks):
+        for _ in range(self.num_decks):
             new_deck = Deck()
             self.cards += new_deck.cards
+
+    @property
+    def num_decks(self):
+        return self.num_decks
+
+    @num_decks.setter
+    def num_decks(self, v):
+        if not (v > 0 and v < 7):
+            raise Exception("Number of decks must be between 1 and 6")
