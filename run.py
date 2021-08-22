@@ -100,7 +100,7 @@ class Table:
             os.system('clear')
             self.print_bet()
             self.print_cards()
-            action_request_string = 'Hit (h), Stick (s), Double (d) or Split (2)?'
+            action_request_string = 'Hit (h), Stick (s), Double (d) or Split (2)? '
             # Loop will run until valid input is entered to trigger break
             while True:
                 try:
