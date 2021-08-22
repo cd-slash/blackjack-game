@@ -53,6 +53,27 @@ class Table:
                     player_blackjack and dealer_blackjack):
                 self.player_stack += self.bet
 
+    def reveal_dealer_cards(self):
+        # deal 1 additional dealer card, since dealer already has one
+        self.dealer_cards += self.shoe.cards.pop()
+        # check for blackjack
+        if evaluate_hand(self.dealer_cards)['blackjack']:
+            return
+        # continue drawing cards until dealer has > 17
+        while evaluate_hand(self.dealer_cards)['value'] < 17:
+            self.dealer_cards += self.shoe.cards.pop()
+    
+    def process_action(self, key):
+        # h = hit, s = stick, d = double, 2 = split
+        if key == 'h':
+            self.player_cards += self.shoe.cards.pop()
+        if key == 's':
+            self.player_input_ended = True
+        if key == 'd':
+            self.bet += self.bet
+            self.player_cards += self.shoe.cards.pop()
+            self.player_input_ended = True
+    
     def play_hand(self, bet):
         self.player_input_ended = False
         # set the bet first to ensure valid before subtracting from stack
@@ -72,19 +93,8 @@ class Table:
             # end the hand if player is bust
             if evaluate_hand(self.player_cards)['value'] > 21:
                 self.player_input_ended = True
-
-
-    def process_action(self, key):
-        # h = hit, s = stick, d = double, 2 = split
-        if key == 'h':
-            self.player_cards += self.shoe.cards.pop()
-        if key == 's':
-            self.player_input_ended = True
-        if key == 'd':
-            self.bet += self.bet
-            self.player_cards += self.shoe.cards.pop()
-            self.player_input_ended = True
-
+        self.reveal_dealer_cards()
+        self.process_result()
 
     @property
     def player_stack(self):
