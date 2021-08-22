@@ -25,8 +25,8 @@ class Table:
         Once all actions have been taken, determine if the player
         won or lost the hand and update their stack accordingly
         """
-        player_hand_evaluation = evaluate_hand(self.player_cards)['value']
-        dealer_hand_evaluation = evaluate_hand(self.dealer_cards)['value']
+        player_hand_evaluation = evaluate_hand(self.player_cards)
+        dealer_hand_evaluation = evaluate_hand(self.dealer_cards)
         player_hand_value = player_hand_evaluation['value']
         dealer_hand_value = dealer_hand_evaluation['value']
         player_blackjack = player_hand_evaluation['blackjack']
