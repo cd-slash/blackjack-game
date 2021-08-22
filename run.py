@@ -15,10 +15,10 @@ class Table:
         self.reshuffle = False
 
     def print(self):
-        f"Dealer cards: {self.dealer_cards}"
-        f"Your cards: {self.player_cards}"
-        f"Current bet: {self.bet}"
-        f"Chip stack: {self.player_stack}"
+        print(f"Dealer cards: {self.dealer_cards}")
+        print(f"Your cards: {self.player_cards}")
+        print(f"Current bet: {self.bet}")
+        print(f"Chip stack: {self.player_stack}")
 
     def process_result(self):
         """
@@ -79,7 +79,6 @@ class Table:
         # deal 2 cards to player and 1 to dealer
         self.dealer_cards = []
         self.player_cards = []
-        print(self.shoe.cards)
         self.player_cards += [self.shoe.cards.pop(2)]
         self.dealer_cards += [self.shoe.cards.pop()]
         # get player action
