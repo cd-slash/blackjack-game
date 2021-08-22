@@ -1,6 +1,7 @@
 import random
 import math
 
+
 class Table:
     """
     Holds the player's chip stack and card deck(s).
@@ -36,20 +37,29 @@ class Table:
         # player has blackjack, dealer does not: winnings are 1.5x bet
         # note: bet is also returned when player wins so bet is * 2.5 not 1.5
         if player_blackjack and not dealer_blackjack:
-            self.player_stack += self.bet * 2.5
+            winnings = self.bet * 2.5
+            self.player_stack += winnings
+            print(f"Blackjack! You won {winnings}")
             return
 
         # player is not bust
         if player_hand_value <= 21:
             # player hand beats dealer or dealer is bust
             if player_hand_value > dealer_hand_value or dealer_hand_value > 21:
-                self.player_stack += self.bet * 2
+                winnings = self.bet * 2
+                self.player_stack += winnings
+                print(f"You won {winnings}!")
                 return
             # tie: return the bet only
             if (not dealer_blackjack and
                 (player_hand_value == dealer_hand_value)) or (
                     player_blackjack and dealer_blackjack):
                 self.player_stack += self.bet
+                print(f"push: returning {self.bet} bet")
+                return
+
+        # if function gets to here, dealer has won
+        print("Dealer won :-(")
 
     def reveal_dealer_cards(self):
         # deal 1 additional dealer card, since dealer already has one
@@ -95,6 +105,8 @@ class Table:
             if evaluate_hand(self.player_cards)['value'] > 21:
                 self.player_input_ended = True
         self.reveal_dealer_cards()
+        print("All cards dealt - hand complete")
+        self.print_cards()
         self.process_result()
         if len(self.shoe.cards) < self.shoe.reshuffle_point:
             self.reshuffle = True
