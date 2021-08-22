@@ -83,6 +83,7 @@ class Table:
             self.player_input_ended = True
 
     def play_hand(self):
+        self.player_bust = False
         self.player_input_ended = False
         # set the bet first to ensure valid before subtracting from stack
         self.bet = int(input('How much would you like to bet on this hand?'))
@@ -104,7 +105,10 @@ class Table:
             # end the hand if player is bust
             if evaluate_hand(self.player_cards)['value'] > 21:
                 self.player_input_ended = True
-        self.reveal_dealer_cards()
+                self.player_bust = True
+        # only deal additional dealer cards if player is not bust
+        if not self.player_bust:
+            self.reveal_dealer_cards()
         print("All cards dealt - hand complete")
         self.print_cards()
         self.process_result()
