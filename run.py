@@ -15,8 +15,8 @@ class Table:
         self.reshuffle = False
 
     def print_cards(self):
-        print(f"Dealer cards: {[Deck.get_label(card) for card in self.dealer_cards]}")
-        print(f"Your cards: {[Deck.get_label(card) for card in self.player_cards]}")
+        print(f"Dealer cards: {[Deck.get_label(card) for card in self.dealer_cards]}: {evaluate_hand(self.dealer_cards)['value']}")
+        print(f"Your cards: {[Deck.get_label(card) for card in self.player_cards]}: {evaluate_hand(self.player_cards)['value']}")
 
     def print_bet(self):
         print(f"Current bet: {self.bet}")
