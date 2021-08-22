@@ -37,7 +37,7 @@ class Deck:
     Standard 52 card deck
     """
 
-    card_labels = [
+    card_ranks = [
         '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'
         ]
 
@@ -51,8 +51,8 @@ class Deck:
 
     # card values are in 0-12 indexed array
     # 4 suits of 13 cards, so label index is remainder after dividing by 13
-    def get_label(self, x):
-        return self.card_labels[x % 13]
+    def get_rank(self, x):
+        return self.card_ranks[x % 13]
 
     # 52 cards in 4 suits, so round down after dividing by 13 for suit
     def get_suit(self, x):
