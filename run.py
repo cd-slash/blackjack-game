@@ -61,6 +61,17 @@ class Table:
         if not (v > 0):
             raise Exception("Player stack must be greater than 0")
 
+    @property
+    def bet(self):
+        return self.bet
+
+    @bet.setter
+    def bet(self, v):
+        if not (v > 0):
+            raise Exception("Bet must be greater than 0")
+        if not (v <= self.player_stack):
+            raise Exception("Bet must not be larger than remaining chips")
+
 
 class Deck:
     """
