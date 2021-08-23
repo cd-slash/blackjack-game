@@ -41,6 +41,7 @@ Checklists for testing features
   - [ ] Entering invalid key for action during hand causes crash
   - [ ] User is prompted to split when that is not a valid action
   - [ ] User is prompted to double when that is not a valid action
+  - [ ] Double is possible after additional cards have been dealt, but should not be
   - [ ] Split does not show additional player hand
   - [ ] Player stack > 999999 causes print overflow
 
