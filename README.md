@@ -33,11 +33,7 @@ Linter testing details
 
 Checklists for testing features
 
-### Fixed bugs
-
-List of fixed bugs
-
-### Open bugs
+### Bugs
 
   - [ ] 2 of clubs is index 0 so is falsy and interpreted as face down card by print function
 
