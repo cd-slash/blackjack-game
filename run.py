@@ -18,13 +18,32 @@ class Table:
     def print(self):
         dealer_card_images = [Deck.print_card(card) for card in self.dealer_cards]
         player_card_images = [Deck.print_card(card) for card in self.player_cards]
-        
-        # header row; total width = 65 characters
+
+        # top border row; total width = 65 characters
         view = [f'┌{"".join(["-"] * 63)}┐']
+        # dealer status and cards
         view += f'|<-- Dealer: {evaluate_hand(self.dealer_cards)["value"]} -->'
-        # dealer cards
         for row in range(5):
             view += f'|{"".join([image[row] for image in dealer_card_images])}'
+        # player status and cards
+        view += f'|<-- Player: {evaluate_hand(self.player_cards)["value"]} -->'
+        for row in range(5):
+            view += f'|{"".join([image[row] for image in player_card_images])}'
+        # current bet and chip stack with spacer rows
+        view += '|'
+        view += f'|<--  Current bet: {self.bet}     |     Remaining chips: {self.player_stack}  -->'
+        view += '|'
+        # message row
+        # if spacer length is an odd number, add 1 extra block to right spacer
+        spacer_left = math.floor(63 - len(self.status_message)) / 2
+        spacer_right = math.ceil(63 - len(self.status_message)) / 2
+        view += f'|{"".join(["░"] * spacer_left}{self.status_message}{"".join(["░"] * spacer_right)}'
+        # bottom border row
+        view = [f'└{"".join(["-"] * 63)}┘']
+
+        # clear the screen and print the new view
+        os.system('clear')
+        print("\n".join(view))
 
     def print_cards(self):
         print(f"Dealer cards: {[Deck.get_label(card) for card in self.dealer_cards]}: {evaluate_hand(self.dealer_cards)['value']}")
