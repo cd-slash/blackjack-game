@@ -15,24 +15,16 @@ class Table:
         self.shoe = Shoe(num_decks)
         self.reshuffle = False
 
-    def print_card(self, card):
-        r = Deck.get_rank(card)
-        s = Deck.get_suit(card)
-        # add a spacer if rank is a single character
-        p = '' if r == '10' else ' '
-
-        card_list = '┌─────┐'
-        # card value is specified
-        if card:
-            card_list += f'│{r}{s}{p}  │'
-            card_list += '│     │'
-            card_list += f'│   {p}{r}{s}│'
-        # no card value, i.e. card is face-down
-        else:
-            card_list += ['│░░░░░│'] * 3
-        card_list += '└─────┘'
-
-        return card_list
+    def print(self):
+        dealer_card_images = [print_card(card) for card in self.dealer_cards]
+        player_card_images = [print_card(card) for card in self.player_cards]
+        
+        # header row; total width = 65 characters
+        view = [f'┌{"".join(["-"] * 63)}┐']
+        view += f'|'
+        # dealer cards
+        for row in range(5):
+            view += f'|{"".join([image[row] for image in dealer_card_images])}'
 
     def print_cards(self):
         print(f"Dealer cards: {[Deck.get_label(card) for card in self.dealer_cards]}: {evaluate_hand(self.dealer_cards)['value']}")
@@ -203,6 +195,27 @@ class Deck:
     @staticmethod
     def get_label(x):
         return f"{Deck.get_rank(x)}{Deck.get_suit(x)}"
+
+    # print an ascii representation of a card
+    @staticmethod
+    def print_card(self, card):
+        r = Deck.get_rank(card)
+        s = Deck.get_suit(card)
+        # add a spacer if rank is a single character
+        p = '' if r == '10' else ' '
+
+        card_list = '┌─────┐'
+        # card value is specified
+        if card:
+            card_list += f'│{r}{s}{p}  │'
+            card_list += '│     │'
+            card_list += f'│   {p}{r}{s}│'
+        # no card value, i.e. card is face-down
+        else:
+            card_list += ['│░░░░░│'] * 3
+        card_list += '└─────┘'
+
+        return card_list
 
 
 class Shoe:
