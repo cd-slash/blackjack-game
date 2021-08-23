@@ -21,13 +21,18 @@ class Table:
         # add a spacer if rank is a single character
         p = '' if r == '10' else ' '
 
-        return [
-            '┌─────┐',
-            f'│{r}{s}{p}  │',
-            '│     │',
-            f'│   {p}{r}{s}│',
-            '└─────┘'
-            ]
+        card_list = '┌─────┐'
+        # card value is specified
+        if card:
+            card_list += f'│{r}{s}{p}  │'
+            card_list += '│     │'
+            card_list += f'│   {p}{r}{s}│'
+        # no card value, i.e. card is face-down
+        else:
+            card_list += ['│░░░░░│'] * 3
+        card_list += '└─────┘'
+
+        return card_list
 
     def print_cards(self):
         print(f"Dealer cards: {[Deck.get_label(card) for card in self.dealer_cards]}: {evaluate_hand(self.dealer_cards)['value']}")
