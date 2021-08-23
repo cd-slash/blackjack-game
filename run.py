@@ -145,7 +145,7 @@ class Table:
             self.player_cards += [self.shoe.cards.pop()]
         if key == 's':
             self.player_input_ended = True
-        if key == 'd':
+        if key == 'd' and self.action_permitted('double'):
             self.player_stack -= self.bet
             self.bet += self.bet
             self.player_cards += [self.shoe.cards.pop()]
