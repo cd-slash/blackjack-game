@@ -15,7 +15,7 @@ class Table:
         self.shoe = Shoe(num_decks)
         self.reshuffle = False
 
-    def print(self):
+    def print(self, message):
         dealer_card_images = [Deck.print_card(card) for card in self.dealer_cards]
         player_card_images = [Deck.print_card(card) for card in self.player_cards]
 
@@ -35,9 +35,9 @@ class Table:
         view += '|'
         # message row
         # if spacer length is an odd number, add 1 extra block to right spacer
-        spacer_left = math.floor(63 - len(self.status_message)) / 2
-        spacer_right = math.ceil(63 - len(self.status_message)) / 2
-        view += f'|{"".join(["░"] * spacer_left}{self.status_message}{"".join(["░"] * spacer_right)}'
+        spacer_left = math.floor(63 - len(message)) / 2
+        spacer_right = math.ceil(63 - len(message)) / 2
+        view += f'|{"".join(["░"] * spacer_left)}{self.status_message}{"".join(["░"] * spacer_right)}'
         # bottom border row
         view = [f'└{"".join(["-"] * 63)}┘']
 
