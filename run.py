@@ -236,7 +236,7 @@ class Deck:
 
         card_list = ['┌─────┐']
         # card value is specified
-        if card:
+        if card or card == 0:
             card_list += [f'│{r}{s}{p}  │']
             card_list += ['│     │']
             card_list += [f'│  {p}{r}{s}│']

@@ -35,7 +35,7 @@ Checklists for testing features
 
 ### Bugs
 
-  - [ ] 2 of clubs is index 0 so is falsy and interpreted as face down card by print function
+  - [x] ~~2 of clubs is index 0 so is falsy and interpreted as face down card by print function~~
 
 ## Deployment
 
