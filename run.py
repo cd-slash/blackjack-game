@@ -245,7 +245,7 @@ class Deck:
             print_list += ['│░░░░░│'] * 3
         print_list += ['└─────┘']
 
-        return card_list
+        return print_list
 
 
 class Shoe:
