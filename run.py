@@ -20,6 +20,9 @@ class Table:
 
     def print(self, message, columns=65):
         dealer_card_images = [Deck.print_card(card) for card in self.dealer_cards]
+        # add a face down card for the dealer if only 1 dealer card dealt
+        if len(self.dealer_cards) == 1:
+            dealer_card_images += [Deck.print_card()]
         player_card_images = [Deck.print_card(card) for card in self.player_cards]
 
         view = []
@@ -228,7 +231,7 @@ class Deck:
 
     # print an ascii representation of a card
     @staticmethod
-    def print_card(card=False):
+    def print_card(card=-1):
         r = Deck.get_rank(card)
         s = Deck.get_suit(card)
         # add a spacer if rank is a single character
@@ -236,7 +239,7 @@ class Deck:
 
         print_list = ['┌─────┐']
         # card value is specified
-        if card or card == 0:
+        if card >= 0:
             print_list += [f'│{r}{s}{p}  │']
             print_list += ['│     │']
             print_list += [f'│  {p}{r}{s}│']
