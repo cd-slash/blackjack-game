@@ -15,6 +15,20 @@ class Table:
         self.shoe = Shoe(num_decks)
         self.reshuffle = False
 
+    def print_card(self, card):
+        r = Deck.get_rank(card)
+        s = Deck.get_suit(card)
+        # add a spacer if rank is a single character
+        p = '' if r == '10' else ' '
+
+        return [
+            '┌─────┐',
+            f'│{r}{s}{p}  │',
+            '│     │',
+            f'│   {p}{r}{s}│',
+            '└─────┘'
+            ]
+
     def print_cards(self):
         print(f"Dealer cards: {[Deck.get_label(card) for card in self.dealer_cards]}: {evaluate_hand(self.dealer_cards)['value']}")
         print(f"Your cards: {[Deck.get_label(card) for card in self.player_cards]}: {evaluate_hand(self.player_cards)['value']}")
