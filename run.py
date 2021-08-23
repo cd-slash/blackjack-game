@@ -39,12 +39,18 @@ class Table:
         spacer_left = int(math.floor(((columns - 2) - len(message)) / 2) - 1)
         spacer_right = int(math.ceil(((columns - 2) - len(message)) / 2) - 1)
         view += [f'|{"".join(["░"] * spacer_left)} {message} {"".join(["░"] * spacer_right)}']
-        # bottom border row
-        view += [f'└{"".join(["-"] * 63)}┘']
+        # create a new list for printing and add top border
+        print_view = [f'┌{"".join(["-"] * (columns - 2))}┐']
+        # add right border with spacers to all but first and last rows
+        for row in view:
+            spacers = "".join([" " * ((columns - 1) - len(row))])
+            print_view += [f'{row}{spacers}|']
+        # bottom border
+        print_view += [f'└{"".join(["-"] * (columns - 2))}┘']
 
         # clear the screen and print the new view
         os.system('clear')
-        print("\n".join(view))
+        print("\n".join(print_view))
 
     def print_cards(self):
         print(f"Dealer cards: {[Deck.get_label(card) for card in self.dealer_cards]}: {evaluate_hand(self.dealer_cards)['value']}")
