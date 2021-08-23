@@ -118,6 +118,25 @@ class Table:
         while evaluate_hand(self.dealer_cards)['value'] < 17:
             self.dealer_cards += [self.shoe.cards.pop()]
 
+    def action_permitted(self, action):
+        """
+        Returns True or False indicating if the action
+        passed in (hit, stand, double or split) is permitted
+        """
+        # hit and stand always allowed
+        if action == 'hit' or action == 'stand':
+            return True
+        # double allowed as first action only
+        elif action == 'double' and len(self.player_cards) == 2:
+            return True
+        # split allowed only as first action and when cards have equal rank
+        elif (action == 'split' and
+                len(self.player_cards) == 2 and
+                Deck.get_rank(self.player_cards[0]) == Deck.get_rank(self.player_cards[1])):
+            return True
+        else:
+            return False
+
     def process_action(self, key):
         # h = hit, s = stick, d = double, 2 = split
         if key == 'h':
