@@ -127,7 +127,9 @@ class Table:
         if action == 'hit' or action == 'stand':
             return True
         # double allowed as first action only
-        elif action == 'double' and len(self.player_cards) == 2:
+        elif (action == 'double' and
+                len(self.player_cards) == 2 and
+                self.player_stack >= self.bet):
             return True
         # split allowed only as first action and when cards have equal rank
         elif (action == 'split' and
