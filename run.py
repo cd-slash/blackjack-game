@@ -46,9 +46,9 @@ class Table:
         # strip decimal from stack value if round number
         stack_string = str(self.player_stack).rstrip("0").rstrip(".")
         if self.bet_placed:
-            view += [f'|<--  Current bet: {bet_spacer}{self.bet}  -->|<--  Remaining chips: {stack_spacer}{stack_string}  -->']
+            view += [f'|<--  Current bet: {bet_spacer}{self.bet}  -->|<--  Remaining chips: {stack_spacer}{round_float(self.player_stack)}  -->']
         else:
-            view += [f'|<--     No bet placed     -->|<--  Remaining chips: {stack_spacer}{self.player_stack}  -->']
+            view += [f'|<--     No bet placed     -->|<--  Remaining chips: {stack_spacer}{round_float(self.player_stack)}  -->']
         view += ['|']
         # message row; if spacer length is an odd number, add 1 extra block to right spacer
         spacer_left = int(math.floor(((columns - 2) - len(message)) / 2) - 1)
@@ -88,8 +88,7 @@ class Table:
             remove decimal if winnings is a round number
             source: https://stackoverflow.com/questions/2440692/formatting-floats-without-trailing-zeros
             """
-            winnings_string = str(winnings).rstrip("0").rstrip(".")
-            self.print(f'Blackjack! You won {winnings_string}. Press Enter for new hand.')
+            self.print(f'Blackjack! You won {round_float(winnings)}. Press Enter for new hand.')
             input()
             return
 
@@ -165,7 +164,7 @@ class Table:
         self.dealer_cards = []
         self.bet_placed = False
         # set the bet first to ensure valid before subtracting from stack
-        self.print(f'How much would you like to bet? (max. {self.player_stack})')
+        self.print(f'How much would you like to bet? (max. {round_float(self.player_stack)})')
         self.bet = int(input())
         self.bet_placed = True
         self.player_stack -= self.bet
