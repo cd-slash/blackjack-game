@@ -24,11 +24,15 @@ class Table:
 
         view = []
         # dealer status and cards
-        view += [f'|<-- Dealer: {evaluate_hand(self.dealer_cards)["value"]} -->']
+        dealer_hand_rank = evaluate_hand(self.dealer_cards)
+        dealer_hand_label = "Blackjack" if dealer_hand_rank['blackjack'] else dealer_hand_rank['value']
+        view += [f'|<-- Dealer: {dealer_hand_label} -->']
         for row in range(5):
             view += [f'|{"".join([image[row] for image in dealer_card_images])}']
         # player status and cards
-        view += [f'|<-- Player: {evaluate_hand(self.player_cards)["value"]} -->']
+        player_hand_rank = evaluate_hand(self.player_cards)
+        player_hand_label = "Blackjack" if player_hand_rank['blackjack'] else player_hand_rank['value']
+        view += [f'|<-- Player: {player_hand_label} -->']
         for row in range(5):
             view += [f'|{"".join([image[row] for image in player_card_images])}']
         # current bet and chip stack with spacer rows
