@@ -16,8 +16,8 @@ class Table:
         self.reshuffle = False
 
     def print(self):
-        dealer_card_images = [print_card(card) for card in self.dealer_cards]
-        player_card_images = [print_card(card) for card in self.player_cards]
+        dealer_card_images = [Deck.print_card(card) for card in self.dealer_cards]
+        player_card_images = [Deck.print_card(card) for card in self.player_cards]
         
         # header row; total width = 65 characters
         view = [f'┌{"".join(["-"] * 63)}┐']
@@ -198,7 +198,7 @@ class Deck:
 
     # print an ascii representation of a card
     @staticmethod
-    def print_card(self, card):
+    def print_card(card):
         r = Deck.get_rank(card)
         s = Deck.get_suit(card)
         # add a spacer if rank is a single character
