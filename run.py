@@ -134,6 +134,9 @@ class Table:
     def play_hand(self):
         self.player_bust = False
         self.player_input_ended = False
+        self.player_cards = []
+        self.dealer_cards = []
+        self.bet = 0
         # set the bet first to ensure valid before subtracting from stack
         self.print(f'How much would you like to bet? (max. {self.player_stack})')
         self.bet = int(input())
