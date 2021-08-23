@@ -39,7 +39,7 @@ class Table:
         spacer_right = math.ceil(63 - len(message)) / 2
         view += f'|{"".join(["░"] * spacer_left)}{self.status_message}{"".join(["░"] * spacer_right)}'
         # bottom border row
-        view = [f'└{"".join(["-"] * 63)}┘']
+        view += [f'└{"".join(["-"] * 63)}┘']
 
         # clear the screen and print the new view
         os.system('clear')
