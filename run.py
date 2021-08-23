@@ -77,7 +77,8 @@ class Table:
         if player_blackjack and not dealer_blackjack:
             winnings = self.bet * 2.5
             self.player_stack += winnings
-            self.print(f"Blackjack! You won {winnings}")
+            self.print(f'Blackjack! You won {winnings}. Press any key for new hand.')
+            input()
             return
 
         # player is not bust
@@ -86,18 +87,21 @@ class Table:
             if player_hand_value > dealer_hand_value or dealer_hand_value > 21:
                 winnings = self.bet * 2
                 self.player_stack += winnings
-                self.print(f"You won {winnings}!")
+                self.print(f'You won {winnings}!. Press any key for new hand.')
+                input()
                 return
             # tie: return the bet only
             if (not dealer_blackjack and
                 (player_hand_value == dealer_hand_value)) or (
                     player_blackjack and dealer_blackjack):
                 self.player_stack += self.bet
-                self.print(f"push: returning {self.bet} bet")
+                self.print(f'push: returning {self.bet} bet. Press any key for new hand.')
+                input()
                 return
 
         # if function gets to here, dealer has won
-        self.print("Dealer won :-(")
+        self.print("Dealer won :-(. Press any key for new hand.")
+        input()
 
     def reveal_dealer_cards(self):
         # deal 1 additional dealer card, since dealer already has one
