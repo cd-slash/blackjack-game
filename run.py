@@ -162,7 +162,7 @@ class Deck:
         ]
 
     card_suits = [
-        'c', 'd', 'h', 's'
+        '♣', '♦', '♥', '♠'
         ]
 
     def __init__(self):
