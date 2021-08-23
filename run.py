@@ -18,12 +18,12 @@ class Table:
         self.player_cards = []
         self.bet = 1
 
-    def print(self, message):
+    def print(self, message, columns=65):
         dealer_card_images = [Deck.print_card(card) for card in self.dealer_cards]
         player_card_images = [Deck.print_card(card) for card in self.player_cards]
 
         # top border row; total width = 65 characters
-        view = [f'┌{"".join(["-"] * 63)}┐']
+        view = [f'┌{"".join(["-"] * (columns - 2))}┐']
         # dealer status and cards
         view += [f'|<-- Dealer: {evaluate_hand(self.dealer_cards)["value"]} -->']
         for row in range(5):
@@ -38,8 +38,8 @@ class Table:
         view += ['|']
         # message row
         # if spacer length is an odd number, add 1 extra block to right spacer
-        spacer_left = int(math.floor((63 - len(message)) / 2) - 1)
-        spacer_right = int(math.ceil((63 - len(message)) / 2) - 1)
+        spacer_left = int(math.floor(((columns - 2) - len(message)) / 2) - 1)
+        spacer_right = int(math.ceil(((columns - 2) - len(message)) / 2) - 1)
         view += [f'|{"".join(["░"] * spacer_left)} {message} {"".join(["░"] * spacer_right)}']
         # bottom border row
         view += [f'└{"".join(["-"] * 63)}┘']
