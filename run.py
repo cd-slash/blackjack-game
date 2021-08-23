@@ -65,14 +65,6 @@ class Table:
         os.system('clear')
         print("\n".join(print_view))
 
-    def print_cards(self):
-        print(f"Dealer cards: {[Deck.get_label(card) for card in self.dealer_cards]}: {evaluate_hand(self.dealer_cards)['value']}")
-        print(f"Your cards: {[Deck.get_label(card) for card in self.player_cards]}: {evaluate_hand(self.player_cards)['value']}")
-
-    def print_bet(self):
-        print(f"Current bet: {self.bet}")
-        print(f"Chip stack: {self.player_stack}")
-
     def process_result(self):
         """
         Once all actions have been taken, determine if the player
