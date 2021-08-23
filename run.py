@@ -21,7 +21,7 @@ class Table:
         
         # header row; total width = 65 characters
         view = [f'┌{"".join(["-"] * 63)}┐']
-        view += f'|'
+        view += f'|<-- Dealer: {evaluate_hand(self.dealer_cards)["value"]} -->'
         # dealer cards
         for row in range(5):
             view += f'|{"".join([image[row] for image in dealer_card_images])}'
