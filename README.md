@@ -44,6 +44,7 @@ Checklists for testing features
   - [ ] Double is possible after additional cards have been dealt, but should not be
   - [ ] Split does not show additional player hand
   - [ ] Player stack > 999999 causes print overflow
+  - [ ] Double increases bet but does not remove incremental value from stack
 
 
 ## Deployment
