@@ -22,17 +22,17 @@ class Table:
         # top border row; total width = 65 characters
         view = [f'┌{"".join(["-"] * 63)}┐']
         # dealer status and cards
-        view += f'|<-- Dealer: {evaluate_hand(self.dealer_cards)["value"]} -->'
+        view += [f'|<-- Dealer: {evaluate_hand(self.dealer_cards)["value"]} -->']
         for row in range(5):
-            view += f'|{"".join([image[row] for image in dealer_card_images])}'
+            view += [f'|{"".join([image[row] for image in dealer_card_images])}']
         # player status and cards
-        view += f'|<-- Player: {evaluate_hand(self.player_cards)["value"]} -->'
+        view += [f'|<-- Player: {evaluate_hand(self.player_cards)["value"]} -->']
         for row in range(5):
-            view += f'|{"".join([image[row] for image in player_card_images])}'
+            view += [f'|{"".join([image[row] for image in player_card_images])}']
         # current bet and chip stack with spacer rows
-        view += '|'
-        view += f'|<--  Current bet: {self.bet}     |     Remaining chips: {self.player_stack}  -->'
-        view += '|'
+        view += ['|']
+        view += [f'|<--  Current bet: {self.bet}     |     Remaining chips: {self.player_stack}  -->']
+        view += ['|']
         # message row
         # if spacer length is an odd number, add 1 extra block to right spacer
         spacer_left = math.floor(63 - len(message)) / 2
