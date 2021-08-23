@@ -36,8 +36,10 @@ Checklists for testing features
 ### Bugs
 
   - [x] ~~2 of clubs is index 0 so is falsy and interpreted as face down card by print function~~
+  - [ ] Game requests user press any key for next hand, but spacebar does not trigger new hand
   - [ ] Betting full value of chip stack throws error (stack must be greater than 0)
   - [ ] Entering invalid key for action during hand causes crash
+
 
 ## Deployment
 
