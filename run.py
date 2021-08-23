@@ -43,8 +43,10 @@ class Table:
         view += ['|']
         bet_spacer = "".join([' ' * (6 - len(str(self.bet)))])
         stack_spacer = "".join([' ' * (6 - len(str(self.player_stack)))])
+        # strip decimal from stack value if round number
+        stack_string = str(self.player_stack).rstrip("0").rstrip(".")
         if self.bet_placed:
-            view += [f'|<--  Current bet: {bet_spacer}{self.bet}  -->|<--  Remaining chips: {stack_spacer}{self.player_stack}  -->']
+            view += [f'|<--  Current bet: {bet_spacer}{self.bet}  -->|<--  Remaining chips: {stack_spacer}{stack_string}  -->']
         else:
             view += [f'|<--     No bet placed     -->|<--  Remaining chips: {stack_spacer}{self.player_stack}  -->']
         view += ['|']

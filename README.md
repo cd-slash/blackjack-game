@@ -48,8 +48,8 @@ Checklists for testing features
   - [ ] Player stack > 999999 causes print overflow
   - [ ] Double increases bet but does not remove incremental value from stack
   - [ ] Input is requested when player has blackjack and dealer does not (hand should be over)
-  - [ ] Status message displays decimal on round number when winning with blackjack
-  - [ ] Player stack shows decimal when round number after winning with blackjack
+  - [x] ~~Status message displays decimal on round number when winning with blackjack~~
+  - [x] ~~Player stack shows decimal when round number after winning with blackjack~~
 
 
 ## Deployment
