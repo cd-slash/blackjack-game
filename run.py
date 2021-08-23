@@ -84,7 +84,7 @@ class Table:
         if player_blackjack and not dealer_blackjack:
             winnings = self.bet * 2.5
             self.player_stack += winnings
-            self.print(f'Blackjack! You won {winnings}. Press any key for new hand.')
+            self.print(f'Blackjack! You won {winnings}. Press Enter for new hand.')
             input()
             return
 
