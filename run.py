@@ -22,8 +22,7 @@ class Table:
         dealer_card_images = [Deck.print_card(card) for card in self.dealer_cards]
         player_card_images = [Deck.print_card(card) for card in self.player_cards]
 
-        # top border row; total width = 65 characters
-        view = [f'┌{"".join(["-"] * (columns - 2))}┐']
+        view = []
         # dealer status and cards
         view += [f'|<-- Dealer: {evaluate_hand(self.dealer_cards)["value"]} -->']
         for row in range(5):
