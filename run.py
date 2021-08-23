@@ -120,7 +120,7 @@ class Table:
         self.player_bust = False
         self.player_input_ended = False
         # set the bet first to ensure valid before subtracting from stack
-        self.print(f'You have {str(self.player_stack)} chips. How much would you like to bet on this hand? ')
+        self.print(f'How much would you like to bet? (max. {self.player_stack})')
         self.bet = int(input())
         self.player_stack -= self.bet
         # deal 2 cards to player and 1 to dealer
