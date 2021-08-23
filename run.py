@@ -228,7 +228,7 @@ class Deck:
 
     # print an ascii representation of a card
     @staticmethod
-    def print_card(card):
+    def print_card(card=False):
         r = Deck.get_rank(card)
         s = Deck.get_suit(card)
         # add a spacer if rank is a single character
