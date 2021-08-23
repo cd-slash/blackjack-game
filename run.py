@@ -73,7 +73,7 @@ class Table:
         if player_blackjack and not dealer_blackjack:
             winnings = self.bet * 2.5
             self.player_stack += winnings
-            print(f"Blackjack! You won {winnings}")
+            self.print(f"Blackjack! You won {winnings}")
             return
 
         # player is not bust
@@ -82,18 +82,18 @@ class Table:
             if player_hand_value > dealer_hand_value or dealer_hand_value > 21:
                 winnings = self.bet * 2
                 self.player_stack += winnings
-                print(f"You won {winnings}!")
+                self.print(f"You won {winnings}!")
                 return
             # tie: return the bet only
             if (not dealer_blackjack and
                 (player_hand_value == dealer_hand_value)) or (
                     player_blackjack and dealer_blackjack):
                 self.player_stack += self.bet
-                print(f"push: returning {self.bet} bet")
+                self.print(f"push: returning {self.bet} bet")
                 return
 
         # if function gets to here, dealer has won
-        print("Dealer won :-(")
+        self.print("Dealer won :-(")
 
     def reveal_dealer_cards(self):
         # deal 1 additional dealer card, since dealer already has one
@@ -120,9 +120,8 @@ class Table:
         self.player_bust = False
         self.player_input_ended = False
         # set the bet first to ensure valid before subtracting from stack
-        self.bet = int(input(
-            f'You have {str(self.player_stack)} chips. How much would you like to bet on this hand? '
-            ))
+        self.print(f'You have {str(self.player_stack)} chips. How much would you like to bet on this hand? ')
+        self.bet = int(input())
         self.player_stack -= self.bet
         # deal 2 cards to player and 1 to dealer
         self.dealer_cards = []
@@ -135,10 +134,12 @@ class Table:
             self.print_bet()
             self.print_cards()
             action_request_string = 'Hit (h), Stick (s), Double (d) or Split (2)? '
+            self.print(action_request_string)
             # Loop will run until valid input is entered to trigger break
             while True:
                 try:
-                    action = input(action_request_string)
+                    self.print(action_request_string)
+                    action = input()
                     break
                 except ValueError:
                     print("invalid action - please try again...")
@@ -153,9 +154,7 @@ class Table:
         # only deal additional dealer cards if player is not bust
         if not self.player_bust:
             self.reveal_dealer_cards()
-        os.system('clear')
-        print("All cards dealt - hand complete")
-        self.print_cards()
+        self.print("All cards dealt - hand complete")
         self.process_result()
         if len(self.shoe.cards) < self.shoe.reshuffle_point:
             self.reshuffle = True
