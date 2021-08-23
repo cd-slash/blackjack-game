@@ -227,7 +227,7 @@ class Deck:
         if card:
             card_list += [f'│{r}{s}{p}  │']
             card_list += ['│     │']
-            card_list += [f'│   {p}{r}{s}│']
+            card_list += [f'│  {p}{r}{s}│']
         # no card value, i.e. card is face-down
         else:
             card_list += ['│░░░░░│'] * 3
