@@ -45,6 +45,7 @@ Checklists for testing features
   - [ ] Split does not show additional player hand
   - [ ] Player stack > 999999 causes print overflow
   - [ ] Double increases bet but does not remove incremental value from stack
+  - [ ] Input is requested when player has blackjack and dealer does not (hand should be over)
 
 
 ## Deployment
