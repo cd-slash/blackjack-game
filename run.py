@@ -17,6 +17,7 @@ class Table:
         self.dealer_cards = []
         self.player_cards = []
         self.bet = 1
+        self.bet_placed = False
 
     def print(self, message, columns=65):
         dealer_card_images = [Deck.print_card(card) for card in self.dealer_cards]
@@ -40,7 +41,12 @@ class Table:
             view += [f'|{"".join([image[row] for image in player_card_images])}']
         # current bet and chip stack with spacer rows
         view += ['|']
-        view += [f'|<--  Current bet: {self.bet}     |     Remaining chips: {self.player_stack}  -->']
+        bet_spacer = "".join([' ' * (6 - len(str(self.bet)))])
+        stack_spacer = "".join([' ' * (6 - len(str(self.player_stack)))])
+        if self.bet_placed:
+            view += [f'|<--  Current bet: {bet_spacer}{self.bet}  -->|<--  Remaining chips: {stack_spacer}{self.player_stack}  -->']
+        else:
+            view += [f'|<--     No bet placed     -->|<--  Remaining chips: {stack_spacer}{self.player_stack}  -->']
         view += ['|']
         # message row; if spacer length is an odd number, add 1 extra block to right spacer
         spacer_left = int(math.floor(((columns - 2) - len(message)) / 2) - 1)
@@ -136,10 +142,11 @@ class Table:
         self.player_input_ended = False
         self.player_cards = []
         self.dealer_cards = []
-        self.bet = 0
+        self.bet_placed = False
         # set the bet first to ensure valid before subtracting from stack
         self.print(f'How much would you like to bet? (max. {self.player_stack})')
         self.bet = int(input())
+        self.bet_placed = True
         self.player_stack -= self.bet
         # deal 2 cards to player and 1 to dealer
         self.dealer_cards = []
