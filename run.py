@@ -35,9 +35,9 @@ class Table:
         view += ['|']
         # message row
         # if spacer length is an odd number, add 1 extra block to right spacer
-        spacer_left = math.floor(63 - len(message)) / 2
-        spacer_right = math.ceil(63 - len(message)) / 2
-        view += f'|{"".join(["░"] * spacer_left)}{self.status_message}{"".join(["░"] * spacer_right)}'
+        spacer_left = int(math.floor(63 - len(message)) / 2)
+        spacer_right = int(math.ceil(63 - len(message)) / 2)
+        view += [f'|{"".join(["░"] * spacer_left)}{message}{"".join(["░"] * spacer_right)}']
         # bottom border row
         view += [f'└{"".join(["-"] * 63)}┘']
 
