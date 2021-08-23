@@ -130,9 +130,6 @@ class Table:
         self.dealer_cards += [self.shoe.cards.pop()]
         # get player action
         while not self.player_input_ended:
-            os.system('clear')
-            self.print_bet()
-            self.print_cards()
             action_request_string = 'Hit (h), Stick (s), Double (d) or Split (2)? '
             self.print(action_request_string)
             # Loop will run until valid input is entered to trigger break
