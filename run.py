@@ -35,8 +35,7 @@ class Table:
         view += ['|']
         view += [f'|<--  Current bet: {self.bet}     |     Remaining chips: {self.player_stack}  -->']
         view += ['|']
-        # message row
-        # if spacer length is an odd number, add 1 extra block to right spacer
+        # message row; if spacer length is an odd number, add 1 extra block to right spacer
         spacer_left = int(math.floor(((columns - 2) - len(message)) / 2) - 1)
         spacer_right = int(math.ceil(((columns - 2) - len(message)) / 2) - 1)
         view += [f'|{"".join(["░"] * spacer_left)} {message} {"".join(["░"] * spacer_right)}']
