@@ -84,7 +84,12 @@ class Table:
         if player_blackjack and not dealer_blackjack:
             winnings = self.bet * 2.5
             self.player_stack += winnings
-            self.print(f'Blackjack! You won {winnings}. Press Enter for new hand.')
+            """
+            remove decimal if winnings is a round number
+            source: https://stackoverflow.com/questions/2440692/formatting-floats-without-trailing-zeros
+            """
+            winnings_string = str(winnings).rstrip("0").rstrip(".")
+            self.print(f'Blackjack! You won {winnings_string}. Press Enter for new hand.')
             input()
             return
 
