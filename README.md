@@ -39,6 +39,10 @@ Checklists for testing features
   - [x] ~~Game requests user press any key for next hand, but spacebar does not trigger new hand~~
   - [ ] Betting full value of chip stack throws error (stack must be greater than 0)
   - [ ] Entering invalid key for action during hand causes crash
+  - [ ] User is prompted to split when that is not a valid action
+  - [ ] User is prompted to double when that is not a valid action
+  - [ ] Split does not show additional player hand
+  - [ ] Player stack > 999999 causes print overflow
 
 
 ## Deployment
