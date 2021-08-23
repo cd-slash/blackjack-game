@@ -36,6 +36,7 @@ Checklists for testing features
 ### Bugs
 
   - [x] ~~2 of clubs is index 0 so is falsy and interpreted as face down card by print function~~
+  - [ ] Betting full value of chip stack throws error (stack must be greater than 0)
 
 ## Deployment
 
