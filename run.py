@@ -222,16 +222,16 @@ class Deck:
         # add a spacer if rank is a single character
         p = '' if r == '10' else ' '
 
-        card_list = '┌─────┐'
+        card_list = ['┌─────┐']
         # card value is specified
         if card:
-            card_list += f'│{r}{s}{p}  │'
-            card_list += '│     │'
-            card_list += f'│   {p}{r}{s}│'
+            card_list += [f'│{r}{s}{p}  │']
+            card_list += ['│     │']
+            card_list += [f'│   {p}{r}{s}│']
         # no card value, i.e. card is face-down
         else:
             card_list += ['│░░░░░│'] * 3
-        card_list += '└─────┘'
+        card_list += ['└─────┘']
 
         return card_list
 
