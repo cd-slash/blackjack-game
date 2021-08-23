@@ -47,4 +47,4 @@ Deployed on Heroku
 
 ## Credits
 
-Credits for code, media or other
+  - Design inspiration for the printed card layout from [Stack Exchange answer](https://codereview.stackexchange.com/a/82109), though the code was re-written entirely.
