@@ -14,6 +14,9 @@ class Table:
         self.player_stack = player_stack
         self.shoe = Shoe(num_decks)
         self.reshuffle = False
+        self.dealer_cards = []
+        self.player_cards = []
+        self.bet = 1
 
     def print(self, message):
         dealer_card_images = [Deck.print_card(card) for card in self.dealer_cards]
