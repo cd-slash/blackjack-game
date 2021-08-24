@@ -56,7 +56,6 @@ Checklists for testing features
   - [x] ~~No input when bet requested results in `invalid literal for int() with base 10: ''` error message~~
   - [x] ~~`IndexError: list index out of range` when concatenating `action_request_string`~~
   - [x] Round ends on player blackjack without checking if dealer has blackjack
-  - [ ] `IndexError: list index out of range` after playing multiple hands
 
 
 ## Deployment
