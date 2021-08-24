@@ -26,7 +26,7 @@ class Table:
         self.bet = 1
         self.bet_placed = False
 
-    def print(self, message, columns=65):
+    def print(self, messages, columns=65):
         dealer_card_images = [Deck.print_card(card) for card in self.dealer_cards]
         # add a face down card for the dealer if only 1 dealer card dealt
         if len(self.dealer_cards) == 1:
@@ -51,16 +51,16 @@ class Table:
         bet_spacer = "".join([' ' * (6 - len(str(self.bet)))])
         stack_spacer = "".join([' ' * (6 - len(str(self.player_stack)))])
         # strip decimal from stack value if round number
-        stack_string = str(self.player_stack).rstrip("0").rstrip(".")
         if self.bet_placed:
             view += [f'|<--  Current bet: {bet_spacer}{self.bet}  -->|<--  Remaining chips: {stack_spacer}{round_float(self.player_stack)}  -->']
         else:
             view += [f'|<--     No bet placed     -->|<--  Remaining chips: {stack_spacer}{round_float(self.player_stack)}  -->']
         view += ['|']
-        # message row; if spacer length is an odd number, add 1 extra block to right spacer
-        spacer_left = int(math.floor(((columns - 2) - len(message)) / 2) - 1)
-        spacer_right = int(math.ceil(((columns - 2) - len(message)) / 2) - 1)
-        view += [f'|{"".join(["░"] * spacer_left)} {message} {"".join(["░"] * spacer_right)}']
+        # message rows; if spacer length is an odd number, add 1 extra block to right spacer
+        for message in messages:
+            spacer_left = int(math.floor(((columns - 2) - len(message)) / 2) - 1)
+            spacer_right = int(math.ceil(((columns - 2) - len(message)) / 2) - 1)
+            view += [f'|{"".join(["░"] * spacer_left)} {message} {"".join(["░"] * spacer_right)}']
         # create a new list for printing and add top border
         print_view = [f'┌{"".join(["-"] * (columns - 2))}┐']
         # add right border with spacers to all but first and last rows
@@ -95,7 +95,7 @@ class Table:
             remove decimal if winnings is a round number
             source: https://stackoverflow.com/questions/2440692/formatting-floats-without-trailing-zeros
             """
-            self.print(f'Blackjack! You won {round_float(winnings)}. Press Enter for new hand.')
+            self.print([f'Blackjack! You won {round_float(winnings)}. Press Enter for new hand.'])
             input()
             return
 
@@ -105,7 +105,7 @@ class Table:
             if player_hand_value > dealer_hand_value or dealer_hand_value > 21:
                 winnings = self.bet * 2
                 self.player_stack += winnings
-                self.print(f'You won {winnings}! Press Enter for new hand.')
+                self.print([f'You won {winnings}! Press Enter for new hand.'])
                 input()
                 return
             # tie: return the bet only
@@ -113,12 +113,12 @@ class Table:
                 (player_hand_value == dealer_hand_value)) or (
                     player_blackjack and dealer_blackjack):
                 self.player_stack += self.bet
-                self.print(f'Push: returning {self.bet} bet. Press Enter for new hand.')
+                self.print([f'Push: returning {self.bet} bet. Press Enter for new hand.'])
                 input()
                 return
 
         # if function gets to here, dealer has won
-        self.print("Dealer won :-( Press Enter for new hand.")
+        self.print(["Dealer won :-( Press Enter for new hand."])
         input()
 
     def reveal_dealer_cards(self):
@@ -176,11 +176,15 @@ class Table:
         self.player_cards = []
         self.dealer_cards = []
         self.bet_placed = False
-        # set the bet first to ensure valid before subtracting from stack
-        self.print(f'How much would you like to bet? (max. {round_float(self.player_stack)})')
-        self.bet = int(input())
-        self.bet_placed = True
-        self.player_stack -= self.bet
+        bet_request_string = f'How much would you like to bet? (max. {round_float(self.player_stack)})'
+        self.print([bet_request_string])
+        while not self.bet_placed:
+            try:
+                self.bet = int(input())
+                self.player_stack -= self.bet
+                self.bet_placed = True
+            except ValueError as error_message:
+                self.print([bet_request_string, str(error_message)])
         # deal 2 cards to player and 1 to dealer
         self.dealer_cards = []
         self.player_cards = []
@@ -200,16 +204,16 @@ class Table:
             source: https://stackoverflow.com/a/30084022/726221 
             """
             action_request_string = f'{" or ".join([", ".join(actions_permitted[:-1]),actions_permitted[-1]])}?'
-            self.print(action_request_string)
+            self.print([action_request_string])
             # Loop will run until valid input is entered to trigger break
             while True:
                 try:
                     action = input()
                     self.process_action(action)
                     break
-                except ValueError:
-                    # ignore invalid keypress
-                    pass
+                except ValueError as error_message:
+                    # ignores invalid keypress, but prints an error e.g. bet exceeds stack
+                    self.print([action_request_string, str(error_message)])
             # end the hand if player is bust
             if evaluate_hand(self.player_cards)['value'] > 21:
                 self.player_input_ended = True
@@ -217,7 +221,6 @@ class Table:
         # only deal additional dealer cards if player is not bust
         if not self.player_bust:
             self.reveal_dealer_cards()
-        self.print("All cards dealt - hand complete")
         self.process_result()
         if len(self.shoe.cards) < self.shoe.reshuffle_point:
             self.reshuffle = True
