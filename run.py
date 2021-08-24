@@ -43,7 +43,10 @@ class Table:
         # player status and cards
         player_hand_rank = evaluate_hand(self.player_cards)
         player_hand_label = "Blackjack" if player_hand_rank['blackjack'] else player_hand_rank['value']
-        view += [f'|<-- Player: {player_hand_label} | Bet: {round_float(self.split_bet)} -->']
+        if self.bet_placed:
+            view += [f'|<-- Player: {player_hand_label} | Bet: {round_float(self.bet)} -->']
+        else:
+            view += [f'|<-- Player: {player_hand_label} -->']
         # print all cards row-by-row
         for row in range(5):
             row_string = [f'|{"".join([image[row] for image in player_card_images])}']
