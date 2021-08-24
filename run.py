@@ -180,11 +180,7 @@ class Table:
         self.print([bet_request_string])
         while not self.bet_placed:
             try:
-                try:
-                    int(input())
-                except ValueError:
-                    raise ValueError("Bet must be a number > 0")
-                self.bet = int(input())
+                self.bet = input()
                 self.player_stack -= self.bet
                 self.bet_placed = True
             except ValueError as error_message:
@@ -247,18 +243,18 @@ class Table:
     @bet.setter
     def bet(self, v):
         try:
-            int(v)
+            bet_input = float(v)
         except ValueError:
             raise ValueError("Bet must be a number")
-        if (v <= 0):
+        if (bet_input <= 0):
             raise ValueError("Bet must be greater than 0")
-        elif (v >= self.player_stack):
-            if self.bet and (v - self.bet) <= self.player_stack:
-                self._bet = v
+        elif (bet_input >= self.player_stack):
+            if self.bet_placed and (bet_input - self.bet) <= self.player_stack:
+                self._bet = bet_input
             else:
                 raise ValueError("Bet must not be larger than remaining chips")
         else:
-            self._bet = v
+            self._bet = bet_input
 
 
 class Deck:
