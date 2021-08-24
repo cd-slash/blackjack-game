@@ -37,16 +37,16 @@ Checklists for testing features
 
   - [x] ~~2 of clubs is index 0 so is falsy and interpreted as face down card by print function~~
   - [x] ~~Game requests user press any key for next hand, but spacebar does not trigger new hand~~
-  - [ ] Betting full value of chip stack throws error (stack must be greater than 0)
-  - [ ] Entering invalid key for action during hand causes crash
-  - [ ] User is prompted to split when that is not a valid action
-  - [ ] User is prompted to double when that is not a valid action
+  - [x] ~~Betting full value of chip stack throws error (stack must be greater than 0)~~
+  - [x] ~~Entering invalid key for action during hand causes crash~~
+  - [x] ~~User is prompted to split when that is not a valid action~~
+  - [x] ~~User is prompted to double when that is not a valid action~~
   - [ ] Double is possible after additional cards have been dealt, but should not be
   - [ ] Double key is active when double is not shown as an available option
-  - [ ] Double is shown as available option when player has insufficient chips to double
+  - [x] ~~Double is shown as available option when player has insufficient chips to double~~
   - [ ] Split does not show additional player hand
   - [ ] Player stack > 999999 causes print overflow
-  - [ ] Double increases bet but does not remove incremental value from stack
+  - [x] ~~Double increases bet but does not remove incremental value from stack~~
   - [ ] Input is requested when player has blackjack and dealer does not (hand should be over)
   - [x] ~~Status message displays decimal on round number when winning with blackjack~~
   - [x] ~~Player stack shows decimal when round number after winning with blackjack~~
