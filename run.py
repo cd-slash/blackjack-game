@@ -348,6 +348,19 @@ class Deck:
     def get_label(x):
         return f"{Deck.get_rank(x)}{Deck.get_suit(x)}"
 
+    # Blackjack card value (i.e. 10 for all face cards)
+    @staticmethod
+    def get_value(card):
+        # Number cards
+        if (card % 13) <= 7:
+            return (card % 13) + 2
+        # Ten and face cards
+        elif (card % 13) >= 8 and (card % 13) <= 11:
+            return 10
+        # Ace
+        elif (card % 13) == 12:
+            return 11
+
     # print an ascii representation of a card
     @staticmethod
     def print_card(card=-1):
