@@ -49,7 +49,7 @@ class Table:
             row_string = [f'|{"".join([image[row] for image in player_card_images])}']
             # marker if primary hand is active and there's a split
             if self.split_cards and row in [1, 2, 3] and not self.player_input_ended:
-                row_string += f'{"".join([" " * ((columns - 5) - len(row))])}<<<<'
+                row_string[0] += f'{"".join([" " * (columns - 5 - len(row_string[0]))])}<<<<'
             view += row_string
         # second row of player cards if there's a split
         if self.split_cards:
@@ -61,7 +61,7 @@ class Table:
                 row_string = [f'|{"".join([image[row] for image in split_card_images])}']
                 # marker if split hand is active
                 if self.player_input_ended and row in [1, 2, 3] and not self.split_input_ended:
-                    row_string += f'{"".join([" " * ((columns - 5) - len(row))])}<<<<'
+                    row_string[0] += f'{"".join([" " * (columns - 5 - len(row_string[0]))])}<<<<'
                 view += row_string
         # current bet and chip stack with spacer rows
         view += ['|']
