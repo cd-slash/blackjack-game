@@ -209,8 +209,9 @@ class Table:
             join last 2 words with ' and '
             source: https://stackoverflow.com/a/30084022/726221 
             """
-            action_request_string = f'{" or ".join([", ".join(actions_permitted[:-1]),actions_permitted[-1]])}?'
-            self.print([action_request_string])
+            if actions_permitted:
+                action_request_string = f'{" or ".join([", ".join(actions_permitted[:-1]),actions_permitted[-1]])}?'
+                self.print([action_request_string])
             # Loop will run until valid input is entered to trigger break
             # or no actions are permitted
             while True and actions_permitted:
