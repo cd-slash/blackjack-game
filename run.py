@@ -136,8 +136,8 @@ class Table:
         Returns True or False indicating if the action
         passed in (hit, stand, double or split) is permitted
         """
-        # hit and stand always allowed
-        if action == 'hit' or action == 'stand':
+        # hit and stand allowed except when player has blackjack
+        if (action == 'hit' or action == 'stand') and not evaluate_hand(self.player_cards)['blackjack']:
             return True
         # double allowed as first action only
         elif (action == 'double' and
