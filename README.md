@@ -54,7 +54,7 @@ Checklists for testing features
   - [x] ~~Game exits without warning when shoe reshuffle point is hit~~
   - [x] ~~Game crashes if bet > stack is entered~~
   - [x] ~~No input when bet requested results in `invalid literal for int() with base 10: ''` error message~~
-  - [ ] `IndexError: list index out of range` when concatenating `action_request_string`
+  - [x] ~~`IndexError: list index out of range` when concatenating `action_request_string`~~
   - [ ] Round ends on player blackjack without checking if dealer has blackjack
 
 
