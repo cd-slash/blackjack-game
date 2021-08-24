@@ -52,7 +52,7 @@ class Table:
         stack_spacer = "".join([' ' * (6 - len(str(self.player_stack)))])
         # strip decimal from stack value if round number
         if self.bet_placed:
-            view += [f'|<--  Current bet: {bet_spacer}{self.bet}  -->|<--  Remaining chips: {stack_spacer}{round_float(self.player_stack)}  -->']
+            view += [f'|<--  Current bet: {bet_spacer}{round_float(self.bet)}  -->|<--  Remaining chips: {stack_spacer}{round_float(self.player_stack)}  -->']
         else:
             view += [f'|<--     No bet placed     -->|<--  Remaining chips: {stack_spacer}{round_float(self.player_stack)}  -->']
         view += ['|']
@@ -105,7 +105,7 @@ class Table:
             if player_hand_value > dealer_hand_value or dealer_hand_value > 21:
                 winnings = self.bet * 2
                 self.player_stack += winnings
-                self.print([f'You won {winnings}! Press Enter for new hand.'])
+                self.print([f'You won {round_float(winnings)}! Press Enter for new hand.'])
                 input()
                 return
             # tie: return the bet only
@@ -113,7 +113,7 @@ class Table:
                 (player_hand_value == dealer_hand_value)) or (
                     player_blackjack and dealer_blackjack):
                 self.player_stack += self.bet
-                self.print([f'Push: returning {self.bet} bet. Press Enter for new hand.'])
+                self.print([f'Push: returning {round_float(self.bet)} bet. Press Enter for new hand.'])
                 input()
                 return
 
