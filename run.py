@@ -124,8 +124,8 @@ class Table:
     def reveal_dealer_cards(self):
         # deal 1 additional dealer card, since dealer already has one
         self.dealer_cards += [self.shoe.cards.pop()]
-        # check for blackjack
-        if evaluate_hand(self.dealer_cards)['blackjack']:
+        # check for dealer or player blackjack
+        if evaluate_hand(self.dealer_cards)['blackjack'] or evaluate_hand(self.player_cards)['blackjack']:
             return
         # continue drawing cards until dealer has > 17
         while evaluate_hand(self.dealer_cards)['value'] < 17:
@@ -227,8 +227,7 @@ class Table:
             if player_hand['value'] > 21 or player_hand['blackjack']:
                 self.player_input_ended = True
         # deal additional dealer cards if player is not bust / has blackjack
-        evaluated_hand = evaluate_hand(self.player_cards)
-        if not evaluated_hand['value'] > 21 and not evaluated_hand['blackjack']:
+        if not evaluate_hand(self.player_cards)['value'] > 21:
             self.reveal_dealer_cards()
         self.process_result()
         # trigger game exit if shoe is at or beyond reshuffle point
