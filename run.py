@@ -168,9 +168,10 @@ class Table:
         # hit and stand allowed except when player has blackjack
         if (action == 'hit' or action == 'stand'):
             return True
-        # double allowed as first action only
+        # double allowed as first action only, and not after split
         elif (action == 'double' and
                 len(self.player_cards) == 2 and
+                not self.split_cards and
                 self.player_stack >= self.bet):
             return True
         # split allowed only as first action and when cards have equal rank and
