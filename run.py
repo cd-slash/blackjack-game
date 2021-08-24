@@ -192,6 +192,16 @@ class Table:
             self.player_cards += [self.shoe.cards.pop()]
             self.player_input_ended = True
             return
+        elif key == '2' and self.action_permitted('split'):
+            # set a flag to get user actions on the split hand
+            self.split_input_ended = False
+            # create a second bet pot
+            self.split_bet = self.bet
+            self.player_stack -= self.split_bet
+            # move one card to the split hand and deal a second card to the main hand
+            self.split_cards += self.player_cards.pop()
+            self.player_cards += self.shoe.cards.pop()
+
 
     def play_hand(self):
         self.player_input_ended = False
