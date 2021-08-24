@@ -180,6 +180,10 @@ class Table:
         self.print([bet_request_string])
         while not self.bet_placed:
             try:
+                try:
+                    int(input())
+                except ValueError:
+                    raise ValueError("Bet must be a number > 0")
                 self.bet = int(input())
                 self.player_stack -= self.bet
                 self.bet_placed = True
@@ -242,6 +246,10 @@ class Table:
 
     @bet.setter
     def bet(self, v):
+        try:
+            int(v)
+        except ValueError:
+            raise ValueError("Bet must be a number")
         if (v <= 0):
             raise ValueError("Bet must be greater than 0")
         elif (v >= self.player_stack):
