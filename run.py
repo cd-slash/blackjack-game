@@ -164,10 +164,13 @@ class Table:
                 len(self.player_cards) == 2 and
                 self.player_stack >= self.bet):
             return True
-        # split allowed only as first action and when cards have equal rank
+        # split allowed only as first action and when cards have equal rank and
+        # when enough chips are available to split, and when split hasn't already happened
         elif (action == 'split' and
+                not self.split_cards and
                 len(self.player_cards) == 2 and
-                Deck.get_rank(self.player_cards[0]) == Deck.get_rank(self.player_cards[1])):
+                Deck.get_rank(self.player_cards[0]) == Deck.get_rank(self.player_cards[1]) and
+                self.player_stack >= self.bet):
             return True
         else:
             return False
