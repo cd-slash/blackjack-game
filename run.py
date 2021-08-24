@@ -247,7 +247,7 @@ class Table:
             """
             Join the actions together into a comma-separated string but
             join last 2 words with ' and '
-            source: https://stackoverflow.com/a/30084022/726221 
+            source: https://stackoverflow.com/a/30084022/726221
             """
             if actions_permitted:
                 action_request_string = f'{" or ".join([", ".join(actions_permitted[:-1]),actions_permitted[-1]])}?'
