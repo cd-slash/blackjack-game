@@ -52,6 +52,7 @@ Checklists for testing features
   - [x] ~~Status message displays decimal on round number when winning with blackjack~~
   - [x] ~~Player stack shows decimal when round number after winning with blackjack~~
   - [ ] Game exits without warning when shoe reshuffle point is hit
+  - [ ] Game crashes if bet > stack is entered
 
 
 ## Deployment
