@@ -248,7 +248,7 @@ class Table:
             raise ValueError("Bet must be a number")
         if (bet_input <= 0):
             raise ValueError("Bet must be greater than 0")
-        elif (bet_input >= self.player_stack):
+        elif (bet_input > self.player_stack):
             if self.bet_placed and (bet_input - self.bet) <= self.player_stack:
                 self._bet = bet_input
             else:
