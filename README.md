@@ -41,8 +41,8 @@ Checklists for testing features
   - [x] ~~Entering invalid key for action during hand causes crash~~
   - [x] ~~User is prompted to split when that is not a valid action~~
   - [x] ~~User is prompted to double when that is not a valid action~~
-  - [ ] Double is possible after additional cards have been dealt, but should not be
-  - [ ] Double key is active when double is not shown as an available option
+  - [x] ~~Double is possible after additional cards have been dealt, but should not be~~
+  - [x] ~~Double key is active when double is not shown as an available option~~
   - [x] ~~Double is shown as available option when player has insufficient chips to double~~
   - [ ] Split does not show additional player hand
   - [ ] Player stack > 999999 causes print overflow
@@ -52,7 +52,7 @@ Checklists for testing features
   - [x] ~~Status message displays decimal on round number when winning with blackjack~~
   - [x] ~~Player stack shows decimal when round number after winning with blackjack~~
   - [ ] Game exits without warning when shoe reshuffle point is hit
-  - [ ] Game crashes if bet > stack is entered
+  - [x] ~~Game crashes if bet > stack is entered~~
 
 
 ## Deployment
