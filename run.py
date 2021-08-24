@@ -225,8 +225,8 @@ class Table:
 
     @player_stack.setter
     def player_stack(self, v):
-        if not (v > 0):
-            raise ValueError("Player stack must be greater than 0")
+        if v < 0 or v > 999999:
+            raise ValueError("Player stack must be between 0 and 999999")
         else:
             self._player_stack = v
 
