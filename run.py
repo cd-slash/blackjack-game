@@ -417,16 +417,10 @@ def evaluate_hand(cards):
     ace_count = 0
 
     for card in cards:
-        # Number cards
-        if (card % 13) <= 7:
-            hand_value += (card % 13 + 2)
-        # Ten and face cards
-        elif (card % 13) >= 8 and (card % 13) <= 11:
-            hand_value += 10
-        # Ace
-        elif (card % 13) == 12:
+        card_value = Deck.get_value(card)
+        hand_value += card_value
+        if card_value == 11:
             ace_count += 1
-            hand_value += 11
 
     # allow for aces to be 1 or 11
     for _ in range(ace_count):
@@ -440,7 +434,7 @@ def evaluate_hand(cards):
         return {'value': hand_value, 'blackjack': False}
 
 
-# Create a new table and play until player has no chips, 
+# Create a new table and play until player has no chips,
 # >= 1m chips, or shoe hits reshuffle marker
 table = Table(1000, 6)
 while True:
