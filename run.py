@@ -156,13 +156,16 @@ class Table:
         # h = hit, s = stick, d = double, 2 = split
         if key == 'h':
             self.player_cards += [self.shoe.cards.pop()]
+            return
         if key == 's':
             self.player_input_ended = True
+            return
         if key == 'd' and self.action_permitted('double'):
             self.player_stack -= self.bet
             self.bet += self.bet
             self.player_cards += [self.shoe.cards.pop()]
             self.player_input_ended = True
+            return
 
     def play_hand(self):
         self.player_bust = False
@@ -198,13 +201,12 @@ class Table:
             # Loop will run until valid input is entered to trigger break
             while True:
                 try:
-                    self.print(action_request_string)
                     action = input()
+                    self.process_action(action)
                     break
                 except ValueError:
-                    print("invalid action - please try again...")
-            if action in ['h', 's', 'd', '2']:
-                self.process_action(action)
+                    # ignore invalid keypress
+                    pass
             else:
                 print("invalid action! Please press h, s, d or 2...")
             # end the hand if player is bust
