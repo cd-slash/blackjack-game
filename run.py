@@ -369,8 +369,17 @@ def evaluate_hand(cards):
         return {'value': hand_value, 'blackjack': False}
 
 
-# Create a new table and play until player has no chips or
-# shoe hits reshuffle marker
+# Create a new table and play until player has no chips, 
+# >= 1m chips, or shoe hits reshuffle marker
 table = Table(1000, 6)
-while table.player_stack > 0 and not table.reshuffle:
+while True:
     table.play_hand()
+    if table.player_stack <= 0:
+        table.print(['Exiting: out of chips'])
+        break
+    if table.player_stack > 999999:
+        table.print(['Exiting: stack >= 1,000,000 - you win!'])
+        break
+    if table.reshuffle:
+        table.print(['Exiting: shoe hit resuffle point'])
+        break
