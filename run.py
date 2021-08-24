@@ -23,6 +23,8 @@ class Table:
         self.reshuffle = False
         self.dealer_cards = []
         self.player_cards = []
+        self.split_cards = []
+        # give bet an intial value to avoid bet <= 0 error
         self.bet = 1
         self.bet_placed = False
 
