@@ -207,8 +207,6 @@ class Table:
                 except ValueError:
                     # ignore invalid keypress
                     pass
-            else:
-                print("invalid action! Please press h, s, d or 2...")
             # end the hand if player is bust
             if evaluate_hand(self.player_cards)['value'] > 21:
                 self.player_input_ended = True
