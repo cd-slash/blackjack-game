@@ -53,6 +53,7 @@ Checklists for testing features
   - [x] ~~Player stack shows decimal when round number after winning with blackjack~~
   - [ ] Game exits without warning when shoe reshuffle point is hit
   - [x] ~~Game crashes if bet > stack is entered~~
+  - [ ] No input when bet requested results in "invalid literal for int() with base 10: ''" error message
 
 
 ## Deployment
