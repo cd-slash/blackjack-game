@@ -171,7 +171,6 @@ class Table:
             return
 
     def play_hand(self):
-        self.player_bust = False
         self.player_input_ended = False
         self.player_cards = []
         self.dealer_cards = []
@@ -193,7 +192,11 @@ class Table:
         # get player action
         while not self.player_input_ended:
             # hit and stick always allowed
-            actions_permitted = ['Hit (h)', 'Stick (s)']
+            actions_permitted = []
+            if self.action_permitted('hit'):
+                actions_permitted += ['Hit (h)']
+            if self.action_permitted('stand'):
+                actions_permitted += ['Stand (s)']
             if self.action_permitted('double'):
                 actions_permitted += ['Double (d)']
             if self.action_permitted('split'):
@@ -206,7 +209,8 @@ class Table:
             action_request_string = f'{" or ".join([", ".join(actions_permitted[:-1]),actions_permitted[-1]])}?'
             self.print([action_request_string])
             # Loop will run until valid input is entered to trigger break
-            while True:
+            # or no actions are permitted
+            while True and actions_permitted:
                 try:
                     action = input()
                     self.process_action(action)
@@ -214,14 +218,16 @@ class Table:
                 except ValueError as error_message:
                     # ignores invalid keypress, but prints an error e.g. bet exceeds stack
                     self.print([action_request_string, str(error_message)])
-            # end the hand if player is bust
-            if evaluate_hand(self.player_cards)['value'] > 21:
+            # end the hand if player is bust or player has blackjack
+            player_hand = evaluate_hand(self.player_cards)
+            if player_hand['value'] > 21 or player_hand['blackjack']:
                 self.player_input_ended = True
-                self.player_bust = True
-        # only deal additional dealer cards if player is not bust
-        if not self.player_bust:
+        # deal additional dealer cards if player is not bust / has blackjack
+        evaluated_hand = evaluate_hand(self.player_cards)
+        if not evaluated_hand['value'] > 21 and not evaluated_hand['blackjack']:
             self.reveal_dealer_cards()
         self.process_result()
+        # trigger game exit if shoe is at or beyond reshuffle point
         if len(self.shoe.cards) < self.shoe.reshuffle_point:
             self.reshuffle = True
 
