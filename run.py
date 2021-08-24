@@ -43,16 +43,33 @@ class Table:
         # player status and cards
         player_hand_rank = evaluate_hand(self.player_cards)
         player_hand_label = "Blackjack" if player_hand_rank['blackjack'] else player_hand_rank['value']
-        view += [f'|<-- Player: {player_hand_label} -->']
+        view += [f'|<-- Player: {player_hand_label} | Bet: {round_float(self.split_bet)} -->']
+        # print all cards row-by-row
         for row in range(5):
-            view += [f'|{"".join([image[row] for image in player_card_images])}']
+            row_string = [f'|{"".join([image[row] for image in player_card_images])}']
+            # marker if primary hand is active and there's a split
+            if self.split_cards and row in [1, 2, 3] and not self.player_input_ended:
+                row_string += f'{"".join([" " * ((columns - 5) - len(row))])}<<<<'
+            view += row_string
+        # second row of player cards if there's a split
+        if self.split_cards:
+            split_hand_rank = evaluate_hand(self.split_cards)
+            split_hand_label = "Blackjack" if split_hand_rank['blackjack'] else split_hand_rank['value']
+            view += [f'|<-- Player split: {split_hand_label} | Bet: {round_float(self.split_bet)} -->']
+            split_card_images = [Deck.print_card(card) for card in self.split_cards]
+            for row in range(5):
+                row_string = [f'|{"".join([image[row] for image in split_card_images])}']
+                # marker if split hand is active
+                if self.player_input_ended and row in [1, 2, 3] and not self.split_input_ended:
+                    row_string += f'{"".join([" " * ((columns - 5) - len(row))])}<<<<'
+                view += row_string
         # current bet and chip stack with spacer rows
         view += ['|']
-        bet_spacer = "".join([' ' * (6 - len(str(self.bet)))])
-        stack_spacer = "".join([' ' * (6 - len(str(self.player_stack)))])
+        bet_spacer = "".join([' ' * (6 - len(str(round_float(self.bet))))])
+        stack_spacer = "".join([' ' * (6 - len(str(round_float(self.player_stack))))])
         # strip decimal from stack value if round number
         if self.bet_placed:
-            view += [f'|<--  Current bet: {bet_spacer}{round_float(self.bet)}  -->|<--  Remaining chips: {stack_spacer}{round_float(self.player_stack)}  -->']
+            view += [f'|<--   Total bet: {bet_spacer}{round_float(self.bet)}  -->|<--  Remaining chips: {stack_spacer}{round_float(self.player_stack)}   -->']
         else:
             view += [f'|<--     No bet placed     -->|<--  Remaining chips: {stack_spacer}{round_float(self.player_stack)}  -->']
         view += ['|']
