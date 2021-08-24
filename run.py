@@ -208,9 +208,8 @@ class Table:
             self.split_bet = self.bet
             self.player_stack -= self.split_bet
             # move one card to the split hand and deal a second card to the main hand
-            self.split_cards += self.player_cards.pop()
-            self.player_cards += self.shoe.cards.pop()
-
+            self.split_cards += [self.player_cards.pop()]
+            self.player_cards += [self.shoe.cards.pop()]
 
     def play_hand(self):
         self.player_input_ended = False
