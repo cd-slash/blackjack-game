@@ -269,7 +269,16 @@ class Table:
         # deal additional dealer cards if player is not bust / has blackjack
         if not evaluate_hand(self.player_cards)['value'] > 21:
             self.reveal_dealer_cards()
-        self.process_result()
+        result = self.process_result(self.player_cards, self.bet)
+        self.player_stack += result['winnings']
+        if self.split_cards:
+            split_result = self.process_result(self.split_cards, self.split_bet)
+            self.player_stack += split_result['winnings']
+            self.print([result['result_string'], split_result['result_string']])
+        else:
+            self.print([result['result_string']])
+        # wait for key before moving to next hand
+        input()
         # trigger game exit if shoe is at or beyond reshuffle point
         if len(self.shoe.cards) < self.shoe.reshuffle_point:
             self.reshuffle = True
