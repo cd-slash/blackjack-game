@@ -2,6 +2,11 @@ import random
 import math
 import os
 
+def round_float(x):
+    if '.' in str(x):
+        return str(x).rstrip("0").rstrip(".")
+    else:
+        return x
 
 class Table:
     """
