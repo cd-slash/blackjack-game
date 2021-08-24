@@ -45,13 +45,13 @@ Checklists for testing features
   - [x] ~~Double key is active when double is not shown as an available option~~
   - [x] ~~Double is shown as available option when player has insufficient chips to double~~
   - [ ] Split does not show additional player hand
-  - [ ] Player stack > 999999 causes print overflow
+  - [x] ~~Player stack > 999999 causes print overflow~~
   - [x] ~~Double increases bet but does not remove incremental value from stack~~
   - [x] ~~Double causes crash when doubled bet value > remaining stack~~
   - [ ] Input is requested when player has blackjack and dealer does not (hand should be over)
   - [x] ~~Status message displays decimal on round number when winning with blackjack~~
   - [x] ~~Player stack shows decimal when round number after winning with blackjack~~
-  - [ ] Game exits without warning when shoe reshuffle point is hit
+  - [x] ~~Game exits without warning when shoe reshuffle point is hit~~
   - [x] ~~Game crashes if bet > stack is entered~~
   - [x] ~~No input when bet requested results in "invalid literal for int() with base 10: ''" error message~~
 
