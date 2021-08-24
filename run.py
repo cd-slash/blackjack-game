@@ -17,7 +17,7 @@ class Table:
     to the user.
     """
 
-    def __init__(self, player_stack, num_decks):
+    def __init__(self, player_stack, num_decks=6):
         self.player_stack = player_stack
         self.shoe = Shoe(num_decks)
         self.reshuffle = False
