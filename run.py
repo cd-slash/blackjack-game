@@ -96,12 +96,12 @@ class Table:
         os.system('clear')
         print("\n".join(print_view))
 
-    def process_result(self):
+    def process_result(self, cards, bet):
         """
         Once all actions have been taken, determine if the player
         won or lost the hand and update their stack accordingly
         """
-        player_hand_evaluation = evaluate_hand(self.player_cards)
+        player_hand_evaluation = evaluate_hand(cards)
         dealer_hand_evaluation = evaluate_hand(self.dealer_cards)
         player_hand_value = player_hand_evaluation['value']
         dealer_hand_value = dealer_hand_evaluation['value']
@@ -111,37 +111,41 @@ class Table:
         # player has blackjack, dealer does not: winnings are 1.5x bet
         # note: bet is also returned when player wins so bet is * 2.5 not 1.5
         if player_blackjack and not dealer_blackjack:
-            winnings = self.bet * 2.5
-            self.player_stack += winnings
+            winnings = bet * 2.5
             """
             remove decimal if winnings is a round number
             source: https://stackoverflow.com/questions/2440692/formatting-floats-without-trailing-zeros
             """
-            self.print([f'Blackjack! You won {round_float(winnings)}. Press Enter for new hand.'])
-            input()
-            return
+            return {
+                'result_string': f'Blackjack! You won {round_float(winnings)}. Press Enter for new hand.',
+                'winnings': winnings
+            }
 
         # player is not bust
         if player_hand_value <= 21:
             # player hand beats dealer or dealer is bust
             if player_hand_value > dealer_hand_value or dealer_hand_value > 21:
-                winnings = self.bet * 2
-                self.player_stack += winnings
-                self.print([f'You won {round_float(winnings)}! Press Enter for new hand.'])
-                input()
-                return
+                winnings = bet * 2
+                return {
+                    'result_string': f'You won {round_float(winnings)}! Press Enter for new hand.',
+                    'winnings': winnings
+                }
+
             # tie: return the bet only
             if (not dealer_blackjack and
                 (player_hand_value == dealer_hand_value)) or (
                     player_blackjack and dealer_blackjack):
-                self.player_stack += self.bet
-                self.print([f'Push: returning {round_float(self.bet)} bet. Press Enter for new hand.'])
-                input()
-                return
+                winnings = bet
+                return {
+                    'result_string': f'Push: returning {round_float(bet)} bet. Press Enter for new hand.',
+                    'winnings': winnings
+                }
 
         # if function gets to here, dealer has won
-        self.print(["Dealer won :-( Press Enter for new hand."])
-        input()
+        return {
+            'result_string': 'Dealer won :-( Press Enter for new hand.',
+            'winnings': 0
+        }
 
     def reveal_dealer_cards(self):
         # deal 1 additional dealer card, since dealer already has one
