@@ -47,6 +47,7 @@ Checklists for testing features
   - [ ] Split does not show additional player hand
   - [ ] Player stack > 999999 causes print overflow
   - [x] ~~Double increases bet but does not remove incremental value from stack~~
+  - [x] ~~Double causes crash when doubled bet value > remaining stack~~
   - [ ] Input is requested when player has blackjack and dealer does not (hand should be over)
   - [x] ~~Status message displays decimal on round number when winning with blackjack~~
   - [x] ~~Player stack shows decimal when round number after winning with blackjack~~

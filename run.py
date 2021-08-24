@@ -157,12 +157,15 @@ class Table:
         if key == 'h':
             self.player_cards += [self.shoe.cards.pop()]
             return
-        if key == 's':
+        elif key == 's':
             self.player_input_ended = True
             return
-        if key == 'd' and self.action_permitted('double'):
-            self.player_stack -= self.bet
-            self.bet += self.bet
+        elif key == 'd' and self.action_permitted('double'):
+            # new variable to avoid risk of changing bet then using it
+            incremental_bet = self.bet
+            # increase bet first to avoid value error because bet > stack
+            self.bet += incremental_bet
+            self.player_stack -= incremental_bet
             self.player_cards += [self.shoe.cards.pop()]
             self.player_input_ended = True
             return
@@ -236,10 +239,13 @@ class Table:
 
     @bet.setter
     def bet(self, v):
-        if not (v > 0):
+        if (v <= 0):
             raise ValueError("Bet must be greater than 0")
-        elif not (v <= self.player_stack):
-            raise ValueError("Bet must not be larger than remaining chips")
+        elif (v >= self.player_stack):
+            if self.bet and (v - self.bet) <= self.player_stack:
+                self._bet = v
+            else:
+                raise ValueError("Bet must not be larger than remaining chips")
         else:
             self._bet = v
 
