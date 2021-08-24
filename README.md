@@ -53,7 +53,8 @@ Checklists for testing features
   - [x] ~~Player stack shows decimal when round number after winning with blackjack~~
   - [x] ~~Game exits without warning when shoe reshuffle point is hit~~
   - [x] ~~Game crashes if bet > stack is entered~~
-  - [x] ~~No input when bet requested results in "invalid literal for int() with base 10: ''" error message~~
+  - [x] ~~No input when bet requested results in `invalid literal for int() with base 10: ''` error message~~
+  - [ ] `IndexError: list index out of range` when concatenating `action_request_string`
 
 
 ## Deployment
