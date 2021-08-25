@@ -157,7 +157,7 @@ class Table:
         while evaluate_hand(self.dealer_cards)['value'] < 17:
             self.dealer_cards += [self.shoe.cards.pop()]
 
-    def action_permitted(self, action):
+    def action_permitted(self, action, split_hand=False):
         """
         Returns True or False indicating if the action
         passed in (hit, stand, double or split) is permitted
@@ -186,7 +186,34 @@ class Table:
         else:
             return False
 
-    def process_action(self, key):
+    def actions_permitted(self, **kwargs):
+        # set the variables if they were passed in as keyword args
+        split_hand = kwargs['split_hand'] if 'split_hand' in kwargs else False
+        req_str = kwargs['req_str'] if 'req_str' in kwargs else False
+        action_list = []
+        if self.action_permitted('hit', split_hand):
+            # append the key prompt if returning the request string
+            action_list += [f'hit{" (h)" if req_str else ""}']
+        if self.action_permitted('stand', split_hand):
+            action_list += [f'stand{" (s)" if req_str else ""}']
+        if self.action_permitted('double', split_hand):
+            action_list += [f'double{" (d)" if req_str else ""}']
+        if self.action_permitted('split', split_hand):
+            action_list += [f'split{" (2)" if req_str else ""}']
+        
+        if req_str:
+            """
+            Join the actions together into a comma-separated string but
+            join last 2 words with ' and '
+            source: https://stackoverflow.com/a/30084022/726221
+            """
+            action_request_string = f'{" or ".join([", ".join(action_list[:-1]),action_list[-1]])}?'
+            return [action_request_string.capitalize()]
+        else:
+            return action_list
+
+    def process_action(self, key, split=False):
+        actions_permitted = self.actions_permitted(split_hand=split)
         # h = hit, s = stick, d = double, 2 = split
         if key == 'h':
             self.player_cards += [self.shoe.cards.pop()]
@@ -194,7 +221,7 @@ class Table:
         elif key == 's':
             self.player_input_ended = True
             return
-        elif key == 'd' and self.action_permitted('double'):
+        elif key == 'd' and 'double' in actions_permitted:
             # new variable to avoid risk of changing bet then using it
             incremental_bet = self.bet
             # increase bet first to avoid value error because bet > stack
@@ -203,7 +230,7 @@ class Table:
             self.player_cards += [self.shoe.cards.pop()]
             self.player_input_ended = True
             return
-        elif key == '2' and self.action_permitted('split'):
+        elif key == '2' and 'split' in actions_permitted:
             # set a flag to get user actions on the split hand
             self.split_input_ended = False
             # create a second bet pot
@@ -234,27 +261,10 @@ class Table:
         self.dealer_cards += [self.shoe.cards.pop()]
         # get player action
         while not self.player_input_ended:
-            # hit and stick always allowed
-            actions_permitted = []
-            if self.action_permitted('hit'):
-                actions_permitted += ['Hit (h)']
-            if self.action_permitted('stand'):
-                actions_permitted += ['Stand (s)']
-            if self.action_permitted('double'):
-                actions_permitted += ['Double (d)']
-            if self.action_permitted('split'):
-                actions_permitted += ['Split (2)']
-            """
-            Join the actions together into a comma-separated string but
-            join last 2 words with ' and '
-            source: https://stackoverflow.com/a/30084022/726221
-            """
-            if actions_permitted:
-                action_request_string = f'{" or ".join([", ".join(actions_permitted[:-1]),actions_permitted[-1]])}?'
-                self.print([action_request_string])
             # Loop will run until valid input is entered to trigger break
             # or no actions are permitted
-            while True and actions_permitted:
+            while True and self.actions_permitted():
+                self.print(self.actions_permitted(req_str=True))
                 try:
                     action = input()
                     self.process_action(action)
