@@ -264,14 +264,33 @@ class Table:
             # Loop will run until valid input is entered to trigger break
             # or no actions are permitted
             while True and self.actions_permitted():
-                self.print(self.actions_permitted(req_str=True))
+                req_str = self.actions_permitted(req_str=True)
+                self.print(req_str)
                 try:
                     action = input()
                     self.process_action(action)
                     break
                 except ValueError as error_message:
                     # ignores invalid keypress, but prints an error e.g. bet exceeds stack
-                    self.print([action_request_string, str(error_message)])
+                    self.print([req_str, str(error_message)])
+            # end the hand if player is bust or player has blackjack
+            player_hand = evaluate_hand(self.player_cards)
+            if player_hand['value'] > 21 or player_hand['blackjack']:
+                self.player_input_ended = True
+            while True and self.actions_permitted(split_hand=True):
+                req_str = self.actions_permitted(split_hand=True, req_str=True)
+                self.print(req_str)
+                try:
+                    action = input()
+                    self.process_action(action, True)
+                    break
+                except ValueError as error_message:
+                    # ignores invalid keypress, but prints an error e.g. bet exceeds stack
+                    self.print([req_str, str(error_message)])
+            # end the hand if player is bust or player has blackjack
+            player_hand = evaluate_hand(self.player_cards)
+            if player_hand['value'] > 21 or player_hand['blackjack']:
+                self.player_input_ended = True
             # end the hand if player is bust or player has blackjack
             player_hand = evaluate_hand(self.player_cards)
             if player_hand['value'] > 21 or player_hand['blackjack']:
