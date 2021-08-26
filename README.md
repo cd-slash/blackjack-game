@@ -59,8 +59,8 @@ Checklists for testing features
   - [ ] Result is push on player blackjack when dealer does not have blackjack
   - [x] ~~Standing requires key to be pressed twice before revealing dealer cards~~
   - [ ] Hitting on split hand deals card to main hand
-  - [ ] Table shows split card from previous hand at start of new hand
-  - [ ] Split is not permitted when split was previously done in same shoe
+  - [x] ~~Table shows split card from previous hand at start of new hand~~
+  - [x] ~~Split is not permitted when split was previously done in same shoe~~
 
 
 ## Deployment

@@ -247,6 +247,7 @@ class Table:
         self.player_input_ended = False
         self.player_cards = []
         self.dealer_cards = []
+        self.split_cards = []
         self.bet_placed = False
         bet_request_string = f'How much would you like to bet? (max. {round_float(self.player_stack)})'
         self.print([bet_request_string])
