@@ -219,7 +219,10 @@ class Table:
         actions_permitted = self.actions_permitted(split_hand=split)
         # h = hit, s = stick, d = double, 2 = split
         if key == 'h':
-            self.player_cards += [self.shoe.cards.pop()]
+            if split:
+                self.split_cards += [self.shoe.cards.pop()]
+            else:
+                self.player_cards += [self.shoe.cards.pop()]
             return
         elif key == 's':
             self.player_input_ended = True
