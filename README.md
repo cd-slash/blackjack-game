@@ -57,6 +57,10 @@ Checklists for testing features
   - [x] ~~`IndexError: list index out of range` when concatenating `action_request_string`~~
   - [x] Round ends on player blackjack without checking if dealer has blackjack
   - [ ] Result is push on player blackjack when dealer does not have blackjack
+  - [ ] Standing requires key to be pressed twice before revealing dealer cards
+  - [ ] Hitting on split hand deals card to main hand
+  - [ ] Table shows split card from previous hand at start of new hand
+  - [ ] Split is not permitted when split was previously done in same shoe
 
 
 ## Deployment
