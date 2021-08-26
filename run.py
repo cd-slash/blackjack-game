@@ -200,7 +200,7 @@ class Table:
             action_list += [f'double{" (d)" if req_str else ""}']
         if self.action_permitted('split', split_hand):
             action_list += [f'split{" (2)" if req_str else ""}']
-        
+
         if req_str:
             """
             Join the actions together into a comma-separated string but
