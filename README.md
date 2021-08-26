@@ -61,6 +61,7 @@ Checklists for testing features
   - [ ] Hitting on split hand deals card to main hand
   - [x] ~~Table shows split card from previous hand at start of new hand~~
   - [x] ~~Split is not permitted when split was previously done in same shoe~~
+  - [ ] Stand is permitted when only 1 card dealt to split hand
 
 
 ## Deployment
