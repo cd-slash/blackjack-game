@@ -162,6 +162,9 @@ class Table:
         Returns True or False indicating if the action
         passed in (hit, stand, double or split) is permitted
         """
+        # no split hand actions permitted if main hand still active
+        if split_hand and not self.player_input_ended:
+            return False
         # no actions permitted if player has blackjack
         if evaluate_hand(self.player_cards)['blackjack']:
             return False
