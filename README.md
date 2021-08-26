@@ -62,6 +62,7 @@ Checklists for testing features
   - [x] ~~Table shows split card from previous hand at start of new hand~~
   - [x] ~~Split is not permitted when split was previously done in same shoe~~
   - [ ] Stand is permitted when only 1 card dealt to split hand
+  - [ ] Split hand stands after 2nd card dealt without permitting hit
 
 
 ## Deployment
