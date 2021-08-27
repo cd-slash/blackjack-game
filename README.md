@@ -64,8 +64,9 @@ Checklists for testing features
   - [x] ~~Stand is permitted when only 1 card dealt to split hand~~
   - [x] ~~Split hand stands after 2nd card dealt without permitting hit~~
   - [x] ~~Player can have blackjack after split, but should only have 21~~
-  - [ ] Not obvious which hand messages are referring to after split
+  - [x] ~~Not obvious which hand messages are referring to after split~~
   - [x] ~~2 cards are dealt when hitting on split hand~~
+  - [ ] Main hand labelled as blackjack and input stopped after split
 
 
 ## Deployment
