@@ -44,7 +44,10 @@ class Table:
             view += [f'|{"".join([image[row] for image in dealer_card_images])}']
         # player status and cards
         player_hand_rank = evaluate_hand(self.player_cards)
-        player_hand_label = "Blackjack" if player_hand_rank['blackjack'] else player_hand_rank['value']
+        if player_hand_rank['blackjack'] and not self.split_cards:
+            player_hand_label = "Blackjack"
+        else:
+            player_hand_rank['value']
         if self.bet_placed:
             view += [f'|<-- Player: {player_hand_label} | Bet: {round_float(self.bet)} -->']
         else:
