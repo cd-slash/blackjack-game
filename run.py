@@ -162,9 +162,11 @@ class Table:
         Returns True or False indicating if the action
         passed in (hit, stand, double or split) is permitted
         """
-        # no split hand actions permitted if main hand still active
-        if split_hand and not self.player_input_ended:
-            return False
+        if split_hand:
+            # no split hand actions permitted if main hand still active
+            # or no split hand input required
+            if not self.player_input_ended or self.split_input_ended:
+                return False
         # no actions permitted if player has blackjack
         if evaluate_hand(self.player_cards)['blackjack']:
             return False
@@ -245,13 +247,17 @@ class Table:
             # move one card to the split hand and deal a second card to the main hand
             self.split_cards += [self.player_cards.pop()]
             self.player_cards += [self.shoe.cards.pop()]
+            # enable actions on the split hand
+            self.split_input_ended = False
 
     def play_hand(self):
         self.player_input_ended = False
+        # Don't prompt for action on split hand
+        self.split_input_ended = True
+        self.bet_placed = False
         self.player_cards = []
         self.dealer_cards = []
         self.split_cards = []
-        self.bet_placed = False
         bet_request_string = f'How much would you like to bet? (max. {round_float(self.player_stack)})'
         self.print([bet_request_string])
         while not self.bet_placed:
