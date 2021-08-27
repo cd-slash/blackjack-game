@@ -299,7 +299,8 @@ class Table:
                 self.player_input_ended = True
             while self.actions_permitted(split_hand=True):
                 # deal second card to split hand initially
-                self.split_cards += [self.shoe.cards.pop()]
+                if len(self.split_cards) == 1:
+                    self.split_cards += [self.shoe.cards.pop()]
                 req_str = self.actions_permitted(split_hand=True, req_str=True)
                 self.print(req_str)
                 try:
