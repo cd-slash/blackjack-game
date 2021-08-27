@@ -296,9 +296,9 @@ class Table:
                 except ValueError as error_message:
                     # ignores invalid keypress, but prints an error e.g. bet exceeds stack
                     self.print([req_str, str(error_message)])
-            # end the hand if player is bust or player has blackjack
+            # end main hand if bust or blackjack
             player_hand = evaluate_hand(self.player_cards)
-            if player_hand['value'] > 21 or player_hand['blackjack']:
+            if player_hand['value'] > 21 or (player_hand['blackjack'] and not self.split_cards):
                 self.player_input_ended = True
             while self.actions_permitted(split_hand=True):
                 # deal second card to split hand initially
@@ -313,10 +313,6 @@ class Table:
                 except ValueError as error_message:
                     # ignores invalid keypress, but prints an error e.g. bet exceeds stack
                     self.print([req_str, str(error_message)])
-            # end main hand if bust or blackjack
-            player_hand = evaluate_hand(self.player_cards)
-            if player_hand['value'] > 21 or (player_hand['blackjack'] and not self.split_cards):
-                self.player_input_ended = True
             # end split hand if bust (no blackjack after split)
             if evaluate_hand(self.split_cards)['value'] > 21:
                 self.split_input_ended = True
