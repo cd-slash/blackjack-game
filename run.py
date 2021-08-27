@@ -168,6 +168,10 @@ class Table:
             # or no split hand input required
             if not self.player_input_ended or self.split_input_ended:
                 return False
+        else:
+            # no main hand actions permitted if input ended
+            if self.player_input_ended:
+                return False
         # no actions permitted if player has blackjack
         # no test for split hand as split hand can't have blackjack
         if evaluate_hand(self.player_cards)['blackjack']:
@@ -229,7 +233,10 @@ class Table:
                 self.player_cards += [self.shoe.cards.pop()]
             return
         elif key == 's':
-            self.player_input_ended = True
+            if split:
+                self.split_input_ended = True
+            else:
+                self.player_input_ended = True
             return
         elif key == 'd' and 'double' in actions_permitted:
             # new variable to avoid risk of changing bet then using it
