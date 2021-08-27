@@ -275,7 +275,7 @@ class Table:
         self.player_cards += [self.shoe.cards.pop(), self.shoe.cards.pop()]
         self.dealer_cards += [self.shoe.cards.pop()]
         # get player action
-        while not self.player_input_ended:
+        while not self.player_input_ended and self.split_input_ended:
             # Loop will run until valid input is entered to trigger break
             # or no actions are permitted
             while True and self.actions_permitted():
@@ -293,6 +293,8 @@ class Table:
             if player_hand['value'] > 21 or player_hand['blackjack']:
                 self.player_input_ended = True
             while True and self.actions_permitted(split_hand=True):
+                # deal second card to split hand initially
+                self.split_cards += [self.shoe.cards.pop()]
                 req_str = self.actions_permitted(split_hand=True, req_str=True)
                 self.print(req_str)
                 try:
