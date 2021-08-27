@@ -325,7 +325,7 @@ class Table:
         if self.split_cards:
             split_result = self.process_result(self.split_cards, self.split_bet)
             self.player_stack += split_result['winnings']
-            self.print([result['result_string'], split_result['result_string']])
+            self.print([f'Hand 1: {result["result_string"]}', f'Hand 2: {split_result["result_string"]}'])
         else:
             self.print([result['result_string']])
         # wait for key before moving to next hand
