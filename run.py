@@ -59,7 +59,8 @@ class Table:
         # second row of player cards if there's a split
         if self.split_cards:
             split_hand_rank = evaluate_hand(self.split_cards)
-            split_hand_label = "Blackjack" if split_hand_rank['blackjack'] else split_hand_rank['value']
+            # split hand can't be blackjack, so always display numeric value
+            split_hand_label = split_hand_rank['value']
             view += [f'|<-- Player split: {split_hand_label} | Bet: {round_float(self.split_bet)} -->']
             split_card_images = [Deck.print_card(card) for card in self.split_cards]
             for row in range(5):
@@ -108,9 +109,9 @@ class Table:
         player_blackjack = player_hand_evaluation['blackjack']
         dealer_blackjack = dealer_hand_evaluation['blackjack']
 
-        # player has blackjack, dealer does not: winnings are 1.5x bet
+        # player has blackjack, dealer does not and no split: winnings are 1.5x bet
         # note: bet is also returned when player wins so bet is * 2.5 not 1.5
-        if player_blackjack and not dealer_blackjack:
+        if player_blackjack and not dealer_blackjack and not self.split_cards:
             winnings = bet * 2.5
             """
             remove decimal if winnings is a round number
@@ -168,6 +169,7 @@ class Table:
             if not self.player_input_ended or self.split_input_ended:
                 return False
         # no actions permitted if player has blackjack
+        # no test for split hand as split hand can't have blackjack
         if evaluate_hand(self.player_cards)['blackjack']:
             return False
         # hit and stand allowed except when player has blackjack
@@ -300,14 +302,13 @@ class Table:
                 except ValueError as error_message:
                     # ignores invalid keypress, but prints an error e.g. bet exceeds stack
                     self.print([req_str, str(error_message)])
-            # end the hand if player is bust or player has blackjack
+            # end main hand if bust or blackjack
             player_hand = evaluate_hand(self.player_cards)
-            if player_hand['value'] > 21 or player_hand['blackjack']:
+            if player_hand['value'] > 21 or (player_hand['blackjack'] and not self.split_cards):
                 self.player_input_ended = True
-            # end the hand if player is bust or player has blackjack
-            player_hand = evaluate_hand(self.player_cards)
-            if player_hand['value'] > 21 or player_hand['blackjack']:
-                self.player_input_ended = True
+            # end split hand if bust (no blackjack after split)
+            if evaluate_hand(self.split_cards)['value'] > 21:
+                self.split_input_ended = True
         # deal additional dealer cards if player is not bust / has blackjack
         if not evaluate_hand(self.player_cards)['value'] > 21:
             self.reveal_dealer_cards()

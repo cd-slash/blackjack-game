@@ -63,6 +63,7 @@ Checklists for testing features
   - [x] ~~Split is not permitted when split was previously done in same shoe~~
   - [ ] Stand is permitted when only 1 card dealt to split hand
   - [ ] Split hand stands after 2nd card dealt without permitting hit
+  - [x] ~~Player can have blackjack after split, but should only have 21~~
 
 
 ## Deployment
