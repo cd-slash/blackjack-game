@@ -275,7 +275,7 @@ class Table:
         self.player_cards += [self.shoe.cards.pop(), self.shoe.cards.pop()]
         self.dealer_cards += [self.shoe.cards.pop()]
         # get player action
-        while not self.player_input_ended and self.split_input_ended:
+        while not self.player_input_ended or not self.split_input_ended:
             # Loop will run until valid input is entered to trigger break
             # or no actions are permitted
             while True and self.actions_permitted():
@@ -311,8 +311,8 @@ class Table:
             # end split hand if bust (no blackjack after split)
             if evaluate_hand(self.split_cards)['value'] > 21:
                 self.split_input_ended = True
-        # deal additional dealer cards if player is not bust / has blackjack
-        if not evaluate_hand(self.player_cards)['value'] > 21:
+        # deal additional dealer cards if main hand or split hand is not bust
+        if evaluate_hand(self.player_cards)['value'] <= 21 or evaluate_hand(self.split_cards)['value'] <= 21:
             self.reveal_dealer_cards()
         result = self.process_result(self.player_cards, self.bet)
         self.player_stack += result['winnings']
