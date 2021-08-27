@@ -44,7 +44,7 @@ Checklists for testing features
   - [x] ~~Double is possible after additional cards have been dealt, but should not be~~
   - [x] ~~Double key is active when double is not shown as an available option~~
   - [x] ~~Double is shown as available option when player has insufficient chips to double~~
-  - [ ] Split does not show additional player hand
+  - [x] ~~Split does not show additional player hand~~
   - [x] ~~Player stack > 999999 causes print overflow~~
   - [x] ~~Double increases bet but does not remove incremental value from stack~~
   - [x] ~~Double causes crash when doubled bet value > remaining stack~~
@@ -55,14 +55,14 @@ Checklists for testing features
   - [x] ~~Game crashes if bet > stack is entered~~
   - [x] ~~No input when bet requested results in `invalid literal for int() with base 10: ''` error message~~
   - [x] ~~`IndexError: list index out of range` when concatenating `action_request_string`~~
-  - [x] Round ends on player blackjack without checking if dealer has blackjack
-  - [ ] Result is push on player blackjack when dealer does not have blackjack
+  - [x] ~~Round ends on player blackjack without checking if dealer has blackjack~~
+  - [x] ~~Result is push on player blackjack when dealer does not have blackjack~~
   - [x] ~~Standing requires key to be pressed twice before revealing dealer cards~~
   - [x] ~~Hitting on split hand deals card to main hand~~
   - [x] ~~Table shows split card from previous hand at start of new hand~~
   - [x] ~~Split is not permitted when split was previously done in same shoe~~
-  - [ ] Stand is permitted when only 1 card dealt to split hand
-  - [ ] Split hand stands after 2nd card dealt without permitting hit
+  - [x] ~~Stand is permitted when only 1 card dealt to split hand~~
+  - [x] ~~Split hand stands after 2nd card dealt without permitting hit~~
   - [x] ~~Player can have blackjack after split, but should only have 21~~
 
 
