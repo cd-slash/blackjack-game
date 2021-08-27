@@ -256,8 +256,6 @@ class Table:
             # move one card to the split hand and deal a second card to the main hand
             self.split_cards += [self.player_cards.pop()]
             self.player_cards += [self.shoe.cards.pop()]
-            # enable actions on the split hand
-            self.split_input_ended = False
 
     def play_hand(self):
         self.player_input_ended = False
