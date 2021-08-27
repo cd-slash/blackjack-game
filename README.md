@@ -67,6 +67,7 @@ Checklists for testing features
   - [x] ~~Not obvious which hand messages are referring to after split~~
   - [x] ~~2 cards are dealt when hitting on split hand~~
   - [ ] Main hand labelled as blackjack and input stopped after split
+  - [ ] `Press Enter for new hand` message duplicated after split
 
 
 ## Deployment
