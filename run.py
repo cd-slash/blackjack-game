@@ -173,10 +173,10 @@ class Table:
             if self.player_input_ended:
                 return False
         # no actions permitted if player has blackjack
-        # no test for split hand as split hand can't have blackjack
-        if evaluate_hand(self.player_cards)['blackjack']:
+        # no blackjack permitted after split
+        if evaluate_hand(self.player_cards)['blackjack'] and not self.split_cards:
             return False
-        # hit and stand allowed except when player has blackjack
+        # hit and stand allowed except when player has blackjack or input ended
         if (action == 'hit' or action == 'stand'):
             return True
         # double allowed as first action only, and not after split
