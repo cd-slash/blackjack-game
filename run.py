@@ -273,13 +273,13 @@ class Table:
         double_permitted = 'double' in actions_permitted(split_hand=split)
 
         # No actions possible
-        if not actions_permitted(split_hand=split):
+        if not self.actions_permitted(split_hand=split):
             return False
 
         """
         Splits allowed (player has 2 cards or equal value)
         """
-        if 'split' in actions_permitted(split_hand=split):
+        if 'split' in self.actions_permitted(split_hand=split):
             # 9s
             if (player_value == 18 and
                     (dealer_value == 7 or dealer_value >= 10)):
