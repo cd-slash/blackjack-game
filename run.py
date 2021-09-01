@@ -532,6 +532,8 @@ def evaluate_hand(cards):
     """
     hand_value = 0
     ace_count = 0
+    blackjack = False
+    soft = False
 
     for card in cards:
         card_value = Deck.get_value(card)
@@ -548,9 +550,13 @@ def evaluate_hand(cards):
 
     # test for blackjack
     if len(cards) == 2 and hand_value == 21:
-        return {'value': 21, 'blackjack': True, 'soft' = soft}
-    else:
-        return {'value': hand_value, 'blackjack': False, 'soft' = soft}
+        blackjack = True
+
+    return {
+        'value': hand_value,
+        'blackjack': blackjack,
+        'soft': soft
+    }
 
 
 # Create a new table and play until player has no chips,
