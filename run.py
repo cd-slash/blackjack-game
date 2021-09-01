@@ -280,17 +280,19 @@ class Table:
         Splits allowed (player has 2 cards or equal value)
         """
         if 'split' in self.actions_permitted(split_hand=split):
-            # 9s
-            if (player_value == 18 and
-                    (dealer_value == 7 or dealer_value >= 10)):
-                return 'stand'
-            # 4s, 6s, or <=7 vs 8+
-            elif ((player_value == 8 and not 5 <= dealer_value <= 6) or
-                    ((player_value == 12 and not soft) and dealer_value >= 7) or
-                    ((player_value <= 14 and not soft) and dealer_value >= 8)):
-                return 'hit'
-            else:
-                return 'double'
+            # Never split 5s - no return so handled in non-split section
+            if not player_value == 10:
+                # 9s
+                if (player_value == 18 and
+                        (dealer_value == 7 or dealer_value >= 10)):
+                    return 'stand'
+                # 4s, 6s, or <=7 vs 8+
+                elif ((player_value == 8 and not 5 <= dealer_value <= 6) or
+                        ((player_value == 12 and not soft) and dealer_value >= 7) or
+                        ((player_value <= 14 and not soft) and dealer_value >= 8)):
+                    return 'hit'
+                else:
+                    return 'double'
 
         """
         Soft player hands (player has >= 1 Ace valued at 11)
