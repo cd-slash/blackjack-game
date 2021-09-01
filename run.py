@@ -47,7 +47,7 @@ class Table:
         if player_hand_rank['blackjack'] and not self.split_cards:
             player_hand_label = "Blackjack"
         else:
-            player_hand_rank['value']
+            player_hand_label = player_hand_rank['value']
         if self.bet_placed:
             view += [f'|<-- Player: {player_hand_label} | Bet: {round_float(self.bet)} -->']
         else:
