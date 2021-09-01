@@ -79,3 +79,4 @@ Deployed on Heroku
   - Design inspiration for the printed card layout from [Stack Exchange answer](https://codereview.stackexchange.com/a/82109), though the code was re-written entirely.
   - Code for joining a string using a different final separator from [Stack Overflow](https://stackoverflow.com/a/30084022/726221)
   - Code for stripping decimals from floats when round from [Stack Overflow](https://stackoverflow.com/questions/2440692/formatting-floats-without-trailing-zeros)
+  - Optimal blackjack strategy table from [Wizard of Odds](https://wizardofodds.com/games/blackjack/strategy/4-decks/)
