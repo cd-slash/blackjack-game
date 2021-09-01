@@ -7,6 +7,19 @@ User's goal:
 
 Instructions
 
+### Optional blackjack rules
+
+Individual casinos adjust the rules of blackjack to achieve a suitable balance of risk vs. attracting players, since some rules work in favour of the player, while others favour the casino. The optional blackjack rules built into this game are summarised below:
+
+ - Dealer stands on soft 17
+ - Doubles permitted with any hand value
+ - One split permitted with any 2 equally-valued cards
+ - No double after split
+ - No blackjack after split
+ - No check for dealer blackjack until player has acted
+ - No insurance
+ - 
+
 ## Features
 
 ### Existing features
