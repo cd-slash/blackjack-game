@@ -260,6 +260,73 @@ class Table:
             self.split_cards += [self.player_cards.pop()]
             self.player_cards += [self.shoe.cards.pop()]
 
+    def optimal_strategy(self, split=False):
+        """
+        Return the optimal action for the player to take
+        based on their cards and the dealer's cards
+        """
+        # Get hand values
+        player_eval = evaluate_hand(self.player_cards)
+        player_value = player_eval['value']
+        soft = player_eval['soft']
+        dealer_value = evaluate_hand(self.dealer_cards)['value']
+        double_permitted = 'double' in actions_permitted(split_hand=split)
+
+        # No actions possible
+        if not actions_permitted(split_hand=split):
+            return False
+
+        """
+        Splits allowed (player has 2 cards or equal value)
+        """
+        if 'split' in actions_permitted(split_hand=split):
+            # 9s
+            if (player_value == 18 and
+                    (dealer_value == 7 or dealer_value >= 10)):
+                return 'stand'
+            # 4s, 6s, or <=7 vs 8+
+            elif ((player_value == 8 and not 5 <= dealer_value <= 6) or
+                    ((player_value == 12 and not soft) and dealer_value >= 7) or
+                    ((player_value <= 14 and not soft) and dealer_value >= 8)):
+                return 'hit'
+            else:
+                return 'double'
+
+        """
+        Soft player hands (player has >= 1 Ace valued at 11)
+        """
+        if soft:
+            if ((player_value == 17 and 3 <= dealer_value <= 6) or
+                    (15 <= player_value <= 16 and 4 <= dealer_value <= 6) or
+                    (13 <= player_value <= 14 and 5 <= dealer_value <= 6)):
+                return 'double' if double_permitted else 'hit'
+            elif player_value == 18 and 3 <= dealer_value <= 6:
+                return 'double' if double_permitted else 'stand'
+            elif ((player_value == 18 and dealer_value <= 8) or
+                    player_value >= 19):
+                return 'stand'
+            else:
+                return 'hit'
+
+        """
+        No split and not soft
+        """
+        # Doubles
+        if ((player_value == 11 and dealer_value < 11) or
+                (player_value == 10 and dealer_value < 10) or
+                (player_value == 9 and 3 <= dealer_value <= 6)):
+            return 'double' if double_permitted else 'hit'
+
+        # Hits
+        if (player_value <= 11 or
+                (player_value == 12 and not (4 <= dealer_value <= 6)) or
+                (13 <= player_value <= 16 and dealer_value >= 7)):
+            return 'hit'
+
+        # player 17+ or (player 13-16 and dealer < 7)
+        else:
+            return 'stand'
+
     def play_hand(self):
         self.player_input_ended = False
         # Don't prompt for action on split hand
