@@ -81,6 +81,7 @@ Checklists for testing features
   - [x] ~~2 cards are dealt when hitting on split hand~~
   - [ ] Main hand labelled as blackjack and input stopped after split
   - [ ] `Press Enter for new hand` message duplicated after split
+  - [ ] Optimal strategy advises splitting 5s
 
 
 ## Deployment
