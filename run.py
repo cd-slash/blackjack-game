@@ -301,7 +301,10 @@ class Table:
         based on their cards and the dealer's cards
         """
         # Get hand values
-        player_eval = evaluate_hand(self.player_cards)
+        if split:
+            player_eval = evaluate_hand(self.split_cards)
+        else:
+            player_eval = evaluate_hand(self.player_cards)
         player_value = player_eval['value']
         soft = player_eval['soft']
         dealer_value = evaluate_hand(self.dealer_cards)['value']
