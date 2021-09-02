@@ -280,8 +280,8 @@ class Table:
         Splits allowed (player has 2 cards or equal value)
         """
         if 'split' in self.actions_permitted(split_hand=split):
-            # Never split 5s - no return so handled in non-split section
-            if not player_value == 10:
+            # Never split 5s or 10s - no return so handled in non-split section
+            if player_value not in [10, 20]:
                 # 9s
                 if (player_value == 18 and
                         (dealer_value == 7 or dealer_value >= 10)):
