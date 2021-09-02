@@ -6,11 +6,13 @@ User's goal:
 
 ## How to play
 
+The rules of the game are based on standard casino [blackjack](https://en.wikipedia.org/wiki/Blackjack).
+
 Upon loading the game, a blank table is shown with a prompt to enter a bet:
 
 [![Screenshot of board on entering game](https://i.gyazo.com/304e516a0ba2b442d4602f15a7a76234.png)](https://gyazo.com/304e516a0ba2b442d4602f15a7a76234)
 
-After entering a valid bet value, the game will deal 2 cards to the player (both face-up), and 2 cards to the dealer (1 face-up, 1 face-down), with a prompt to take an action (only valid actions are shown):
+After entering a valid bet value, the game will deal 2 cards to the player (both face-up), and 2 cards to the dealer (1 face-up, 1 face-down), with a prompt to take an [action](https://en.wikipedia.org/wiki/Blackjack#Player_decisions) (only valid actions are shown):
 
 [![Screenshot of board after bet](https://i.gyazo.com/fd6c248baac9f96b3395575d62cc88e8.png)](https://gyazo.com/fd6c248baac9f96b3395575d62cc88e8)
 
