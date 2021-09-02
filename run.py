@@ -290,7 +290,7 @@ class Table:
         else:
             self.confirmed_action = action
             self.print([
-                self.actions_permitted(req_str=True)[0],
+                self.actions_permitted(req_str=True, split_hand=split)[0],
                 f'Optimal action is to {optimal_strategy}. Press {key_pressed} again to {action}.'
             ])
             return False
