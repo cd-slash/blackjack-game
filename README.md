@@ -82,6 +82,7 @@ Checklists for testing features
   - [ ] Main hand labelled as blackjack and input stopped after split
   - [ ] `Press Enter for new hand` message duplicated after split
   - [x] Optimal strategy advises splitting 5s
+  - [ ] Optimal strategy advises splitting 10s
 
 
 ## Deployment
