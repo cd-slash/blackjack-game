@@ -228,7 +228,6 @@ class Table:
 
     def process_action(self, key_pressed, split=False):
         actions_permitted = self.actions_permitted(split_hand=split)
-        optimal_strategy = self.optimal_strategy(split)
 
         # h = hit, s = stick, d = double, 2 = split
         if key_pressed == 'h':
