@@ -19,7 +19,8 @@ Individual casinos adjust the rules of blackjack to achieve a suitable balance o
  - No blackjack after split
  - No check for dealer blackjack until player has acted
  - No insurance
- - 
+ - Dealer cards not revealed on player bust
+ - Between 1 and 6 decks per shoe (configurable)
 
 ## Features
 
