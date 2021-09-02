@@ -64,6 +64,11 @@ Data model description
  - [x] Entering a valid bet starts the hand
  - [ ] Bet greater than available chips is rejected
  - [x] Entering non-numeric bet prompts that bet must be a number
+ - [ ] User is prompted to press enter to start new hand once each hand ends
+ - [ ] Double is not permitted when remaining chip stack < bet value
+ - [ ] Split is not permitted when remaining chip stack < bet value
+ - [ ] User is shown prompt when action does not match perfect strategy
+ - [ ] User can take action not matching perfect strategy by entering same option again
 
 ### Game play
 
@@ -71,8 +76,13 @@ Data model description
  - [ ] Dealer is dealt 1 face-up card and 1 face-down card initially
  - [ ] `hit` action deals 1 additional card to player
  - [ ] `stand` ends player input and reveals dealer cards
+ - [ ] `double` action increments bet by original bet value and deals 1 card only
+ - [ ] `split` action moves 1 card to second hand and plays each hand independently
  - [ ] player hand value > 21 ends hand
  - [ ] dealer cards are not revealed when player is bust
+ - [ ] Game exits when shuffle point reached
+ - [ ] Game exits when chip stack > 999,999
+ - [ ] Game exits when chip stack == 0
 
 ### Hand outcome
 
@@ -85,6 +95,14 @@ Data model description
  - [ ] Player hand value > 21 is loss
  - [ ] Player hand value <= 21 and dealer blackjack is loss
  - [ ] Player hand value > 21 and dealer hand value > 21 is not observed
+
+### After hand
+
+ - [ ] `Bet * 2` is added to chip stack on win
+ - [ ] `Bet * 3` is added to chip stack on win after doubling
+ - [ ] No value added to chip stack on loss
+ - [ ] `Bet` is added to chip stack on push
+ - [ ] Chip stack is updated according to tests above for each hand independently after split
 
 ### Linter
 
