@@ -18,6 +18,16 @@ Opting to hit will deal another card and prompt again for action (if appropriate
 
 [![Screenshot of board after hit](https://i.gyazo.com/a97fb8c80da27a70a721cd2bb8c8498f.png)](https://gyazo.com/a97fb8c80da27a70a721cd2bb8c8498f)
 
+When play is completed, the game will show the result and update the player's chip stack accordingly:
+
+[![Image from Gyazo](https://i.gyazo.com/fd71e6f81008fd885e6c62bf49663a40.png)](https://gyazo.com/fd71e6f81008fd885e6c62bf49663a40)
+
+Play continues until any of the following happen:
+
+ - Player has no chips left
+ - Player's chip stack exceeds 999,999
+ - The randomly chosen "reshuffle" point is reached
+
 ### Optional blackjack rules
 
 Individual casinos adjust the rules of blackjack to achieve a suitable balance of risk vs. attracting players, since some rules work in favour of the player, while others favour the casino. The optional blackjack rules built into this game are summarised below:
