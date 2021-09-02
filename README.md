@@ -6,7 +6,11 @@ User's goal:
 
 ## How to play
 
-Instructions
+Upon loading the game, a blank table is shown with a prompt to enter a bet:
+[![Image from Gyazo](https://i.gyazo.com/304e516a0ba2b442d4602f15a7a76234.png)](https://gyazo.com/304e516a0ba2b442d4602f15a7a76234)
+
+After entering a valid bet value, the game will deal 2 cards to the player (both face-up), and 2 cards to the dealer (1 face-up, 1 face-down):
+[![Image from Gyazo](https://i.gyazo.com/fd6c248baac9f96b3395575d62cc88e8.png)](https://gyazo.com/fd6c248baac9f96b3395575d62cc88e8)
 
 ### Optional blackjack rules
 
@@ -37,6 +41,12 @@ List of future features
 Data model description
 
 ## Testing
+
+### Player input
+
+ - [x] Entering a valid bet starts the hand
+ - [ ] 
+ - [x] Entering non-numeric bet prompts that bet must be a number
 
 ### Linter
 
