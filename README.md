@@ -69,6 +69,7 @@ Data model description
  - [ ] Split is not permitted when remaining chip stack < bet value
  - [ ] User is shown prompt when action does not match perfect strategy
  - [ ] User can take action not matching perfect strategy by entering same option again
+ - [ ] Chevrons are shown to identify active hand after split
 
 ### Game play
 
@@ -95,6 +96,8 @@ Data model description
  - [ ] Player hand value > 21 is loss
  - [ ] Player hand value <= 21 and dealer blackjack is loss
  - [ ] Player hand value > 21 and dealer hand value > 21 is not observed
+ - [ ] Message bar shows hand result once complete
+ - [ ] 2 message bars show result of each hand after split hand is complete
 
 ### After hand
 
