@@ -55,17 +55,26 @@ Individual casinos [adjust the rules of blackjack](https://en.wikipedia.org/wiki
 
 ### Existing features
 
-List of existing features
+ - [x] basic command line interface
+ - [x] simple game control using keyboard
+ - [x] ascii art table and cards
+ - [x] message bar to prompt for input or display results
+ - [x] prompts to assist with playing "perfect" strategy
+ - [x] standard blackjack rules
+ - [x] common casino rule variations built-in
+ - [x] input error handling
+ - [x] graceful exit on game over
 
 ### Future features
 
-List of future features
+ - [ ] play multiple hands in each round
+ - [ ] local multiplayer
 
 ## Data model
 
 Each game is transient and state is maintained with in-memory variables only; no persistent data model is used.
 
-Game state is maintained in the `Table` class, which acts as a container for all cards, chip stacks and bets, along with methods for controlling gameplay such as `play_hand()` and functions to assess the outcome of a hand.
+Game state is maintained in the `Table` class, which acts as a container for all cards, chip stacks and bets, along with methods for controlling gameplay such as `play_hand()` and functions to assess the outcome of a hand or to determine the optimal action based on the current game state.
 
 ## Testing
 
