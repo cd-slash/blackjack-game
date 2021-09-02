@@ -88,7 +88,7 @@ Checklists for testing features
   - [x] ~~Optimal strategy advises hitting with 3s against dealer 5~~
   - [x] ~~Dealer cards are revealed after player is bust~~
   - [x] ~~List index error when concatenating action string when standing on split hand~~
-  - [ ] Optimal strategy suggests standing on split hand with 10 vs Ace
+  - [x] ~~Optimal strategy suggests standing on split hand with 10 vs Ace~~
 
 
 ## Deployment
