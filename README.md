@@ -7,10 +7,16 @@ User's goal:
 ## How to play
 
 Upon loading the game, a blank table is shown with a prompt to enter a bet:
-[![Image from Gyazo](https://i.gyazo.com/304e516a0ba2b442d4602f15a7a76234.png)](https://gyazo.com/304e516a0ba2b442d4602f15a7a76234)
 
-After entering a valid bet value, the game will deal 2 cards to the player (both face-up), and 2 cards to the dealer (1 face-up, 1 face-down):
-[![Image from Gyazo](https://i.gyazo.com/fd6c248baac9f96b3395575d62cc88e8.png)](https://gyazo.com/fd6c248baac9f96b3395575d62cc88e8)
+[![Screenshot of board on entering game](https://i.gyazo.com/304e516a0ba2b442d4602f15a7a76234.png)](https://gyazo.com/304e516a0ba2b442d4602f15a7a76234)
+
+After entering a valid bet value, the game will deal 2 cards to the player (both face-up), and 2 cards to the dealer (1 face-up, 1 face-down), with a prompt to take an action (only valid actions are shown):
+
+[![Screenshot of board after bet](https://i.gyazo.com/fd6c248baac9f96b3395575d62cc88e8.png)](https://gyazo.com/fd6c248baac9f96b3395575d62cc88e8)
+
+Opting to hit will deal another card and prompt again for action (if appropriate, i.e. the extra card did not cause the hand value to be > 21). Stand will end the user's play and reveal the dealer cards, while double will double the original bet (if enough chips are available) in return for 1 additional card only. Split allows 2 cards of equal value to be separated into 2 individual hands, with the bet value of each matching the original bet, if enough chips are available.
+
+[![Screenshot of board after hit](https://i.gyazo.com/a97fb8c80da27a70a721cd2bb8c8498f.png)](https://gyazo.com/a97fb8c80da27a70a721cd2bb8c8498f)
 
 ### Optional blackjack rules
 
@@ -20,6 +26,7 @@ Individual casinos adjust the rules of blackjack to achieve a suitable balance o
  - Doubles permitted with any hand value
  - One split permitted with any 2 equally-valued cards
  - No double after split
+ - No double-for-less (i.e. double value must match original bet)
  - No blackjack after split
  - No check for dealer blackjack until player has acted
  - No insurance
