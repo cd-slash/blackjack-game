@@ -28,18 +28,24 @@ Play continues until any of the following happen:
  - Player's chip stack exceeds 999,999
  - The randomly chosen "reshuffle" point is reached
 
-### Optional blackjack rules
+### Blackjack rule variations
 
-Individual casinos adjust the rules of blackjack to achieve a suitable balance of risk vs. attracting players, since some rules work in favour of the player, while others favour the casino. The optional blackjack rules built into this game are summarised below:
+Individual casinos [adjust the rules of blackjack](https://en.wikipedia.org/wiki/Blackjack#Rule_variations_and_effects_on_house_edge) to achieve a suitable balance of risk vs. attracting players, since some rules work in favour of the player, while others favour the casino. The optional blackjack rules built into this game are summarised below:
 
+ - Blackjack pays 3:2
  - Dealer stands on soft 17
  - Doubles permitted with any hand value
  - One split permitted with any 2 equally-valued cards
  - No double after split
  - No double-for-less (i.e. double value must match original bet)
  - No blackjack after split
- - No check for dealer blackjack until player has acted
+ - Hit permitted after splitting Aces
+ - No re-splitting (splitting again after splitting)
+ - No check for dealer blackjack until player has acted ("no hole card")
+    - Note: although a face-down card is shown for the dealer, it is not consulted until after the player has acted so this is considered a "no hole card" game
+ - No Original Bets Only (OBO)
  - No insurance
+ - No surrender
  - Dealer cards not revealed on player bust
  - Between 1 and 6 decks per shoe (configurable)
 
