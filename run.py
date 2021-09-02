@@ -423,7 +423,8 @@ class Table:
             if evaluate_hand(self.split_cards)['value'] > 21:
                 self.split_input_ended = True
         # deal additional dealer cards if main hand or split hand is not bust
-        if evaluate_hand(self.player_cards)['value'] <= 21 or evaluate_hand(self.split_cards)['value'] <= 21:
+        if (evaluate_hand(self.player_cards)['value'] <= 21 or
+                (self.split_cards and evaluate_hand(self.split_cards)['value'] <= 21)):
             self.reveal_dealer_cards()
         result = self.process_result(self.player_cards, self.bet)
         self.player_stack += result['winnings']
