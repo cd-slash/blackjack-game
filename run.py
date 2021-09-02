@@ -249,6 +249,7 @@ class Table:
 
         if not self.action_confirmed(action, key_pressed, split):
             self.process_action(input())
+            return
 
         if action == 'hit':
             if split:
