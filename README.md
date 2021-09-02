@@ -62,8 +62,29 @@ Data model description
 ### Player input
 
  - [x] Entering a valid bet starts the hand
- - [ ] 
+ - [ ] Bet greater than available chips is rejected
  - [x] Entering non-numeric bet prompts that bet must be a number
+
+### Game play
+
+ - [ ] Player is dealt 2 cards initially
+ - [ ] Dealer is dealt 1 face-up card and 1 face-down card initially
+ - [ ] `hit` action deals 1 additional card to player
+ - [ ] `stand` ends player input and reveals dealer cards
+ - [ ] player hand value > 21 ends hand
+ - [ ] dealer cards are not revealed when player is bust
+
+### Hand outcome
+
+ - [ ] Player hand value <= 21 and > dealer hand value is win
+ - [ ] Player hand value <= 21 and dealer hand value > 21 is win
+ - [ ] Player blackjack and no dealer blackjack is win
+ - [ ] Player blackjack and dealer blackjack is push (draw)
+ - [ ] Player hand value <= 21 and == dealer hand value is push
+ - [ ] Player hand value <= 21 and < dealer hand value is loss
+ - [ ] Player hand value > 21 is loss
+ - [ ] Player hand value <= 21 and dealer blackjack is loss
+ - [ ] Player hand value > 21 and dealer hand value > 21 is not observed
 
 ### Linter
 
