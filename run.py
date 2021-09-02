@@ -215,7 +215,7 @@ class Table:
         if self.action_permitted('split', split_hand):
             action_list += [f'split{" (2)" if req_str else ""}']
 
-        if req_str:
+        if req_str and action_list:
             """
             Join the actions together into a comma-separated string but
             join last 2 words with 'and'
