@@ -83,6 +83,7 @@ Checklists for testing features
   - [ ] `Press Enter for new hand` message duplicated after split
   - [x] ~~Optimal strategy advises splitting 5s~~
   - [x] ~~Optimal strategy advises splitting 10s~~
+  - [ ] Optimal strategy advises hitting with 3s against dealer 5
 
 
 ## Deployment
