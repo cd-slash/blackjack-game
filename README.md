@@ -63,7 +63,9 @@ List of future features
 
 ## Data model
 
-Data model description
+Each game is transient and state is maintained with in-memory variables only; no persistent data model is used.
+
+Game state is maintained in the `Table` class, which acts as a container for all cards, chip stacks and bets, along with methods for controlling gameplay such as `play_hand()` and functions to assess the outcome of a hand.
 
 ## Testing
 
