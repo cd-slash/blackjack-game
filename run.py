@@ -226,22 +226,43 @@ class Table:
         else:
             return action_list
 
-    def process_action(self, key, split=False):
+    def process_action(self, key_pressed, split=False):
         actions_permitted = self.actions_permitted(split_hand=split)
+        optimal_strategy = self.optimal_strategy(split)
+
         # h = hit, s = stick, d = double, 2 = split
-        if key == 'h':
+        if key_pressed == 'h':
+            action = 'hit'
+        elif key_pressed == 's':
+            action = 'stand'
+        elif key_pressed == 'd':
+            action = 'double'
+        elif key_pressed == '2':
+            action = 'split'
+        # invalid key - return with no action taken
+        else:
+            return
+
+        # do nothing if requested action is not permitted
+        if action not in actions_permitted:
+            return
+
+        if not self.action_confirmed(action, key_pressed, split):
+            self.process_action(input())
+
+        if action == 'hit':
             if split:
                 self.split_cards += [self.shoe.cards.pop()]
             else:
                 self.player_cards += [self.shoe.cards.pop()]
             return
-        elif key == 's':
+        elif action == 'stand':
             if split:
                 self.split_input_ended = True
             else:
                 self.player_input_ended = True
             return
-        elif key == 'd' and 'double' in actions_permitted:
+        elif action == 'double':
             # new variable to avoid risk of changing bet then using it
             incremental_bet = self.bet
             # increase bet first to avoid value error because bet > stack
@@ -250,7 +271,7 @@ class Table:
             self.player_cards += [self.shoe.cards.pop()]
             self.player_input_ended = True
             return
-        elif key == '2' and 'split' in actions_permitted:
+        elif action == 'split':
             # set a flag to get user actions on the split hand
             self.split_input_ended = False
             # create a second bet pot
@@ -259,6 +280,20 @@ class Table:
             # move one card to the split hand and deal a second card to the main hand
             self.split_cards += [self.player_cards.pop()]
             self.player_cards += [self.shoe.cards.pop()]
+
+    def action_confirmed(self, action, key_pressed, split=False):
+        optimal_strategy = self.optimal_strategy(split)
+        if (action == optimal_strategy or
+                self.confirmed_action == action):
+            self.confirmed_action = ''
+            return True
+        else:
+            self.confirmed_action = action
+            self.print([
+                self.actions_permitted(req_str=True)[0],
+                f'Optimal action is to {optimal_strategy}. Press {key_pressed} again to {action}.'
+            ])
+            return False
 
     def optimal_strategy(self, split=False):
         """
@@ -270,7 +305,7 @@ class Table:
         player_value = player_eval['value']
         soft = player_eval['soft']
         dealer_value = evaluate_hand(self.dealer_cards)['value']
-        double_permitted = 'double' in actions_permitted(split_hand=split)
+        double_permitted = 'double' in self.actions_permitted(split_hand=split)
 
         # No actions possible
         if not self.actions_permitted(split_hand=split):
@@ -334,6 +369,7 @@ class Table:
         # Don't prompt for action on split hand
         self.split_input_ended = True
         self.bet_placed = False
+        self.confirmed_action = ''
         self.player_cards = []
         self.dealer_cards = []
         self.split_cards = []
