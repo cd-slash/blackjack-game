@@ -6,7 +6,27 @@ User's goal:
 
 ## How to play
 
-Instructions
+Upon loading the game, a blank table is shown with a prompt to enter a bet:
+
+[![Screenshot of board on entering game](https://i.gyazo.com/304e516a0ba2b442d4602f15a7a76234.png)](https://gyazo.com/304e516a0ba2b442d4602f15a7a76234)
+
+After entering a valid bet value, the game will deal 2 cards to the player (both face-up), and 2 cards to the dealer (1 face-up, 1 face-down), with a prompt to take an action (only valid actions are shown):
+
+[![Screenshot of board after bet](https://i.gyazo.com/fd6c248baac9f96b3395575d62cc88e8.png)](https://gyazo.com/fd6c248baac9f96b3395575d62cc88e8)
+
+Opting to hit will deal another card and prompt again for action (if appropriate, i.e. the extra card did not cause the hand value to be > 21). Stand will end the user's play and reveal the dealer cards, while double will double the original bet (if enough chips are available) in return for 1 additional card only. Split allows 2 cards of equal value to be separated into 2 individual hands, with the bet value of each matching the original bet, if enough chips are available.
+
+[![Screenshot of board after hit](https://i.gyazo.com/a97fb8c80da27a70a721cd2bb8c8498f.png)](https://gyazo.com/a97fb8c80da27a70a721cd2bb8c8498f)
+
+When play is completed, the game will show the result and update the player's chip stack accordingly:
+
+[![Image from Gyazo](https://i.gyazo.com/fd71e6f81008fd885e6c62bf49663a40.png)](https://gyazo.com/fd71e6f81008fd885e6c62bf49663a40)
+
+Play continues until any of the following happen:
+
+ - Player has no chips left
+ - Player's chip stack exceeds 999,999
+ - The randomly chosen "reshuffle" point is reached
 
 ### Optional blackjack rules
 
@@ -16,6 +36,7 @@ Individual casinos adjust the rules of blackjack to achieve a suitable balance o
  - Doubles permitted with any hand value
  - One split permitted with any 2 equally-valued cards
  - No double after split
+ - No double-for-less (i.e. double value must match original bet)
  - No blackjack after split
  - No check for dealer blackjack until player has acted
  - No insurance
@@ -37,6 +58,54 @@ List of future features
 Data model description
 
 ## Testing
+
+### Player input
+
+ - [x] Entering a valid bet starts the hand
+ - [ ] Bet greater than available chips is rejected
+ - [x] Entering non-numeric bet prompts that bet must be a number
+ - [ ] User is prompted to press enter to start new hand once each hand ends
+ - [ ] Double is not permitted when remaining chip stack < bet value
+ - [ ] Split is not permitted when remaining chip stack < bet value
+ - [ ] User is shown prompt when action does not match perfect strategy
+ - [ ] User can take action not matching perfect strategy by entering same option again
+ - [ ] Chevrons are shown to identify active hand after split
+
+### Game play
+
+ - [ ] Player is dealt 2 cards initially
+ - [ ] Dealer is dealt 1 face-up card and 1 face-down card initially
+ - [ ] `hit` action deals 1 additional card to player
+ - [ ] `stand` ends player input and reveals dealer cards
+ - [ ] `double` action increments bet by original bet value and deals 1 card only
+ - [ ] `split` action moves 1 card to second hand and plays each hand independently
+ - [ ] player hand value > 21 ends hand
+ - [ ] dealer cards are not revealed when player is bust
+ - [ ] Game exits when shuffle point reached
+ - [ ] Game exits when chip stack > 999,999
+ - [ ] Game exits when chip stack == 0
+
+### Hand outcome
+
+ - [ ] Player hand value <= 21 and > dealer hand value is win
+ - [ ] Player hand value <= 21 and dealer hand value > 21 is win
+ - [ ] Player blackjack and no dealer blackjack is win
+ - [ ] Player blackjack and dealer blackjack is push (draw)
+ - [ ] Player hand value <= 21 and == dealer hand value is push
+ - [ ] Player hand value <= 21 and < dealer hand value is loss
+ - [ ] Player hand value > 21 is loss
+ - [ ] Player hand value <= 21 and dealer blackjack is loss
+ - [ ] Player hand value > 21 and dealer hand value > 21 is not observed
+ - [ ] Message bar shows hand result once complete
+ - [ ] 2 message bars show result of each hand after split hand is complete
+
+### After hand
+
+ - [ ] `Bet * 2` is added to chip stack on win
+ - [ ] `Bet * 3` is added to chip stack on win after doubling
+ - [ ] No value added to chip stack on loss
+ - [ ] `Bet` is added to chip stack on push
+ - [ ] Chip stack is updated according to tests above for each hand independently after split
 
 ### Linter
 
