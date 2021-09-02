@@ -84,7 +84,7 @@ Checklists for testing features
   - [x] ~~Optimal strategy advises splitting 5s~~
   - [x] ~~Optimal strategy advises splitting 10s~~
   - [x] ~~Optimal strategy advises hitting with 3s against dealer 5~~
-  - [ ] Dealer cards are revealed after player is bust
+  - [x] ~~Dealer cards are revealed after player is bust~~
 
 
 ## Deployment
