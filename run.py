@@ -327,7 +327,7 @@ class Table:
                         ((player_value <= 14 and not soft) and dealer_value >= 8)):
                     return 'hit'
                 else:
-                    return 'double'
+                    return 'split'
 
         """
         Soft player hands (player has >= 1 Ace valued at 11)
