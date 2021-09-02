@@ -84,6 +84,7 @@ Data model description
  - [ ] Game exits when shuffle point reached
  - [ ] Game exits when chip stack > 999,999
  - [ ] Game exits when chip stack == 0
+ - [ ] Game displays reason when exiting
 
 ### Hand outcome
 
