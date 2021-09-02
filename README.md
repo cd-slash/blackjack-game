@@ -151,7 +151,7 @@ Checklists for testing features
   - [x] ~~Player can have blackjack after split, but should only have 21~~
   - [x] ~~Not obvious which hand messages are referring to after split~~
   - [x] ~~2 cards are dealt when hitting on split hand~~
-  - [ ] Main hand labelled as blackjack and input stopped after split
+  - [x] ~~Main hand labelled as blackjack and input stopped after split~~
   - [x] ~~`Press Enter for new hand` message duplicated after split~~
   - [x] ~~Optimal strategy advises splitting 5s~~
   - [x] ~~Optimal strategy advises splitting 10s~~
