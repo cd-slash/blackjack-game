@@ -121,7 +121,7 @@ class Table:
             source: https://stackoverflow.com/questions/2440692/formatting-floats-without-trailing-zeros
             """
             return {
-                'result_string': f'Blackjack! You won {round_float(winnings)}. Press Enter for new hand.',
+                'result_string': f'Blackjack! You won {round_float(winnings)}.',
                 'winnings': winnings
             }
 
@@ -131,7 +131,7 @@ class Table:
             if player_hand_value > dealer_hand_value or dealer_hand_value > 21:
                 winnings = bet * 2
                 return {
-                    'result_string': f'You won {round_float(winnings)}! Press Enter for new hand.',
+                    'result_string': f'You won {round_float(winnings)}!',
                     'winnings': winnings
                 }
 
@@ -141,13 +141,13 @@ class Table:
                     player_blackjack and dealer_blackjack):
                 winnings = bet
                 return {
-                    'result_string': f'Push: returning {round_float(bet)} bet. Press Enter for new hand.',
+                    'result_string': f'Push: returning {round_float(bet)} bet.',
                     'winnings': winnings
                 }
 
         # if function gets to here, dealer has won
         return {
-            'result_string': 'Dealer won :-( Press Enter for new hand.',
+            'result_string': 'Dealer won :-(',
             'winnings': 0
         }
 
@@ -433,9 +433,9 @@ class Table:
         if self.split_cards:
             split_result = self.process_result(self.split_cards, self.split_bet)
             self.player_stack += split_result['winnings']
-            self.print([f'Hand 1: {result["result_string"]}', f'Hand 2: {split_result["result_string"]}'])
+            self.print([f'Hand 1: {result["result_string"]}', f'Hand 2: {split_result["result_string"]} Press Enter for new hand.'])
         else:
-            self.print([result['result_string']])
+            self.print([f'{result["result_string"]} Press Enter for new hand.'])
         # wait for key before moving to next hand
         input()
         # trigger game exit if shoe is at or beyond reshuffle point
