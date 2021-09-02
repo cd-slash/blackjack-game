@@ -2,7 +2,7 @@
 
 User's goal:
   - _The application user wants to play a single-player card game through the command line_
-  - _The user wants to practice / memorise "perfect" (blackjack strategy)[https://wizardofodds.com/games/blackjack/strategy/4-decks/]_
+  - _The user wants to practice / memorise "perfect" [blackjack strategy](https://wizardofodds.com/games/blackjack/strategy/4-decks/)_
 
 ## How to play
 
