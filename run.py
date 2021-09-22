@@ -29,11 +29,15 @@ class Table:
         self.bet_placed = False
 
     def print(self, messages, columns=65):
-        dealer_card_images = [Deck.print_card(card) for card in self.dealer_cards]
+        dealer_card_images = [
+            Deck.print_card(card) for card in self.dealer_cards
+            ]
         # add a face down card for the dealer if only 1 dealer card dealt
         if len(self.dealer_cards) == 1:
             dealer_card_images += [Deck.print_card()]
-        player_card_images = [Deck.print_card(card) for card in self.player_cards]
+        player_card_images = [
+            Deck.print_card(card) for card in self.player_cards
+            ]
 
         view = []
         # dealer status and cards
