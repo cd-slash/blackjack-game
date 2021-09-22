@@ -81,51 +81,51 @@ Game state is maintained in the `Table` class, which acts as a container for all
 ### Player input
 
  - [x] Entering a valid bet starts the hand
- - [ ] Bet greater than available chips is rejected
+ - [x] Bet greater than available chips is rejected
  - [x] Entering non-numeric bet prompts that bet must be a number
- - [ ] User is prompted to press enter to start new hand once each hand ends
- - [ ] Double is not permitted when remaining chip stack < bet value
- - [ ] Split is not permitted when remaining chip stack < bet value
- - [ ] User is shown prompt when action does not match perfect strategy
- - [ ] User can take action not matching perfect strategy by entering same option again
- - [ ] Chevrons are shown to identify active hand after split
+ - [x] User is prompted to press enter to start new hand once each hand ends
+ - [x] Double is not permitted when remaining chip stack < bet value
+ - [x] Split is not permitted when remaining chip stack < bet value
+ - [x] User is shown prompt when action does not match perfect strategy
+ - [x] User can take action not matching perfect strategy by entering same option again
+ - [x] Chevrons are shown to identify active hand after split
 
 ### Game play
 
- - [ ] Player is dealt 2 cards initially
- - [ ] Dealer is dealt 1 face-up card and 1 face-down card initially
- - [ ] `hit` action deals 1 additional card to player
- - [ ] `stand` ends player input and reveals dealer cards
- - [ ] `double` action increments bet by original bet value and deals 1 card only
- - [ ] `split` action moves 1 card to second hand and plays each hand independently
- - [ ] player hand value > 21 ends hand
- - [ ] dealer cards are not revealed when player is bust
- - [ ] Game exits when shuffle point reached
- - [ ] Game exits when chip stack > 999,999
- - [ ] Game exits when chip stack == 0
- - [ ] Game displays reason when exiting
+ - [x] Player is dealt 2 cards initially
+ - [x] Dealer is dealt 1 face-up card and 1 face-down card initially
+ - [x] `hit` action deals 1 additional card to player
+ - [x] `stand` ends player input and reveals dealer cards
+ - [x] `double` action increments bet by original bet value and deals 1 card only
+ - [x] `split` action moves 1 card to second hand and plays each hand independently
+ - [x] player hand value > 21 ends hand
+ - [x] dealer cards are not revealed when player is bust
+ - [x] Game exits when shuffle point reached
+ - [x] Game exits when chip stack > 999,999
+ - [x] Game exits when chip stack == 0
+ - [x] Game displays reason when exiting
 
 ### Hand outcome
 
- - [ ] Player hand value <= 21 and > dealer hand value is win
- - [ ] Player hand value <= 21 and dealer hand value > 21 is win
- - [ ] Player blackjack and no dealer blackjack is win
- - [ ] Player blackjack and dealer blackjack is push (draw)
- - [ ] Player hand value <= 21 and == dealer hand value is push
- - [ ] Player hand value <= 21 and < dealer hand value is loss
- - [ ] Player hand value > 21 is loss
- - [ ] Player hand value <= 21 and dealer blackjack is loss
- - [ ] Player hand value > 21 and dealer hand value > 21 is not observed
- - [ ] Message bar shows hand result once complete
- - [ ] 2 message bars show result of each hand after split hand is complete
+ - [x] Player hand value <= 21 and > dealer hand value is win
+ - [x] Player hand value <= 21 and dealer hand value > 21 is win
+ - [x] Player blackjack and no dealer blackjack is win
+ - [x] Player blackjack and dealer blackjack is push (draw)
+ - [x] Player hand value <= 21 and == dealer hand value is push
+ - [x] Player hand value <= 21 and < dealer hand value is loss
+ - [x] Player hand value > 21 is loss
+ - [x] Player hand value <= 21 and dealer blackjack is loss
+ - [x] Player hand value > 21 and dealer hand value > 21 is not observed
+ - [x] Message bar shows hand result once complete
+ - [x] 2 message bars show result of each hand after split hand is complete
 
 ### After hand
 
- - [ ] `Bet * 2` is added to chip stack on win
- - [ ] `Bet * 3` is added to chip stack on win after doubling
- - [ ] No value added to chip stack on loss
- - [ ] `Bet` is added to chip stack on push
- - [ ] Chip stack is updated according to tests above for each hand independently after split
+ - [x] `Bet * 2` is added to chip stack on win
+ - [x] `Bet * 3` is added to chip stack on win after doubling
+ - [x] No value added to chip stack on loss
+ - [x] `Bet` is added to chip stack on push
+ - [x] Chip stack is updated according to tests above for each hand independently after split
 
 ### Linter
 
