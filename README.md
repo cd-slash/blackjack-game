@@ -129,7 +129,11 @@ Game state is maintained in the `Table` class, which acts as a container for all
 
 ### Linter
 
-Linter testing details
+The PEP8 linter returns quite a number of `E501` (line too long) errors. While I have cleared these up as much as possible while writing the code, I have opted not to address these remaining errors as they are either interpolated strings that do not lend themselves to being wrapped across multiple lines, or because doing so would significantly reduce the readability of the code.
+
+Additionally, there is conflicting information about whether a requirement that lines must be <=79 chars is applicable in 2021; for example, the Django documentation specifically calls out that this requirement of PEP8 should not be followed.
+
+No errors other than `E501` were detected by the linter.
 
 ### Validator
 
