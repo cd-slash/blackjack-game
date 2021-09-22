@@ -135,8 +135,6 @@ Additionally, there is conflicting information about whether a requirement that 
 
 No errors other than `E501` were detected by the linter.
 
-### Validator
-
 ### Checklists
 
 Checklists for testing features
